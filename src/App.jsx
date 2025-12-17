@@ -2,7 +2,7 @@ import React from 'react'
 import Home from './components/Home/Home'
 import About from './components/About/About'
 import { Route, Routes } from 'react-router-dom'
-import Leadership from './components/Leadership/LEadership'
+import Leadership from './components/Leadership/Leadership'
 import Vision from "./components/Vision/Vision"
 import Initiatives from './components/Initiatives/Initiatives'
 import News from './components/News/News'
