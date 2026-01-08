@@ -1,14 +1,17 @@
+
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './News.css';
 import Footer from '../Home/Footer';
 import Navbar from '../Home/Navbar';
-import { 
+import { supabase } from '../../../supabase';
+import {
   Calendar,
   MapPin,
   Eye,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  X
 } from 'lucide-react';
 
 const News = () => {
@@ -19,10 +22,15 @@ const News = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedNews, setSelectedNews] = useState(null);
+  const [newsData, setNewsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); // For gallery modal
   const location = useLocation();
-  const newsPerPage = 6;
+  const newsPerPage = 6; // Adjusted for gallery grid
 
-  // Content translations
+  // Content translations (Kept same as before)
   const content = {
     en: {
       nav: [
@@ -43,7 +51,12 @@ const News = () => {
       prev: 'Previous',
       next: 'Next',
       date: 'Date',
-      location: 'Location'
+      location: 'Location',
+      readMore: 'Show Images',
+      share: 'Share',
+      prevPost: 'Previous Post',
+      nextPost: 'Next Post',
+      leaveReply: 'Leave a Reply'
     },
     ta: {
       nav: [
@@ -64,135 +77,133 @@ const News = () => {
       prev: 'முந்தைய',
       next: 'அடுத்த',
       date: 'தேதி',
-      location: 'இடம்'
+      location: 'இடம்',
+      readMore: 'மேலும் பார்க்க',
+      share: 'பகிர்க',
+      prevPost: 'முந்தைய செய்தி',
+      nextPost: 'அடுத்த செய்தி',
+      leaveReply: 'கருத்துகப் பதிவு செய்யவும்'
     }
   };
 
   const t = content[language];
 
-  // Sample news data - Simple image cards with description
-  const newsData = [
-    {
-      id: 1,
-      title: language === 'ta' ? 'சென்னை பொதுக்கூட்டம்' : 'Chennai Public Meeting',
-      description: language === 'ta' ? 'சென்னை மெரினா கடற்கரையில் 10,000 பேருக்கு மேல் கலந்த பொதுக்கூட்டம்' : 'Public meeting at Marina Beach Chennai with 10,000+ attendance',
-      image: '/news/chennai-meeting.jpg',
-      date: '2024-12-15',
-      location: language === 'ta' ? 'சென்னை' : 'Chennai',
-      category: 'meetings',
-    },
-    {
-      id: 2,
-      title: language === 'ta' ? 'விவசாயிகள் பிரசாரம்' : 'Farmers Campaign',
-      description: language === 'ta' ? 'விவசாயிகள் கடன் தள்ளுபடி பிரசாரம் தொடக்கம்' : 'Launch of farmers loan waiver campaign',
-      image: '/news/farmers-campaign.jpg',
-      date: '2024-12-10',
-      location: language === 'ta' ? 'மதுரை' : 'Madurai',
-      category: 'campaigns',
-    },
-    {
-      id: 3,
-      title: language === 'ta' ? 'இளைஞர் பயிற்சி முகாம்' : 'Youth Training Camp',
-      description: language === 'ta' ? 'இளைஞர்களுக்கான தொழில் திறன் பயிற்சி முகாம்' : 'Vocational skill training camp for youth',
-      image: '/news/youth-camp.jpg',
-      date: '2024-12-05',
-      location: language === 'ta' ? 'கோயம்புத்தூர்' : 'Coimbatore',
-      category: 'social',
-    },
-    {
-      id: 4,
-      title: language === 'ta' ? 'மருத்துவ முகாம்' : 'Medical Camp',
-      description: language === 'ta' ? 'இலவச மருத்துவ பரிசோதனை மற்றும் மருந்துகள்' : 'Free medical checkup and medicines distribution',
-      image: '/news/medical-camp.jpg',
-      date: '2024-12-01',
-      location: language === 'ta' ? 'மதுரை' : 'Madurai',
-      category: 'social',
-    },
-    {
-      id: 5,
-      title: language === 'ta' ? 'சுற்றுச்சூழல் பிரசாரம்' : 'Environment Campaign',
-      description: language === 'ta' ? 'மரங்கள் நடுதல் மற்றும் கடற்கரை சுத்தம் பிரசாரம்' : 'Tree plantation and beach cleaning campaign',
-      image: '/news/environment-rally.jpg',
-      date: '2024-11-28',
-      location: language === 'ta' ? 'சென்னை' : 'Chennai',
-      category: 'campaigns',
-    },
-    {
-      id: 6,
-      title: language === 'ta' ? 'பெண்கள் தொழில் பயிற்சி' : 'Women Entrepreneurship',
-      description: language === 'ta' ? 'பெண்கள் தொழில் தொடக்க பயிற்சித் திட்டம்' : 'Women entrepreneurship training program',
-      image: '/news/women-entrepreneurs.jpg',
-      date: '2024-11-25',
-      location: language === 'ta' ? 'சேலம்' : 'Salem',
-      category: 'development',
-    },
-    {
-      id: 7,
-      title: language === 'ta' ? 'பொருளாதார மாநாடு' : 'Economic Conference',
-      description: language === 'ta' ? 'தமிழ்நாடு பொருளாதார வளர்ச்சி மாநாடு' : 'Tamil Nadu economic development conference',
-      image: '/news/progress-conference.jpg',
-      date: '2024-11-20',
-      location: language === 'ta' ? 'திருச்சி' : 'Trichy',
-      category: 'development',
-    },
-    {
-      id: 8,
-      title: language === 'ta' ? 'சட்ட உதவி முகாம்' : 'Legal Aid Camp',
-      description: language === 'ta' ? 'ஏழை எளியவர்களுக்கு இலவச சட்ட ஆலோசனை' : 'Free legal consultation for underprivileged',
-      image: '/news/legal-aid.jpg',
-      date: '2024-11-15',
-      location: language === 'ta' ? 'தஞ்சாவூர்' : 'Thanjavur',
-      category: 'social',
-    },
-    {
-      id: 9,
-      title: language === 'ta' ? 'புதிய அலுவலக திறப்பு' : 'New Office Inauguration',
-      description: language === 'ta' ? 'புதிய கட்சி அலுவலகம் திறப்பு விழா' : 'New party office inauguration ceremony',
-      image: '/news/party-office.jpg',
-      date: '2024-11-10',
-      location: language === 'ta' ? 'கோயம்புத்தூர்' : 'Coimbatore',
-      category: 'announcements',
-    },
-    {
-      id: 10,
-      title: language === 'ta' ? 'கிராம வளர்ச்சித் திட்டம்' : 'Village Development',
-      description: language === 'ta' ? 'மாதிரி கிராம வளர்ச்சித் திட்டம் தொடக்கம்' : 'Model village development scheme launch',
-      image: '/news/village-development.jpg',
-      date: '2024-11-05',
-      location: language === 'ta' ? 'நாமக்கல்' : 'Namakkal',
-      category: 'development',
-    },
-    {
-      id: 11,
-      title: language === 'ta' ? 'கல்வி சீர்திருத்த கூட்டம்' : 'Education Reform Meeting',
-      description: language === 'ta' ? 'கல்வி சீர்திருத்தங்கள் குறித்து ஆலோசனைக் கூட்டம்' : 'Consultation meeting on education reforms',
-      image: '/news/education-meeting.jpg',
-      date: '2024-11-01',
-      location: language === 'ta' ? 'சென்னை' : 'Chennai',
-      category: 'meetings',
-    },
-    {
-      id: 12,
-      title: language === 'ta' ? 'வேலைவாய்ப்பு அறிவிப்பு' : 'Employment Announcement',
-      description: language === 'ta' ? '5,000 புதிய வேலைவாய்ப்புகள் உருவாக்கும் திட்டம்' : 'Plan to create 5,000 new employment opportunities',
-      image: '/news/employment-announcement.jpg',
-      date: '2024-10-28',
-      location: language === 'ta' ? 'கோயம்புத்தூர்' : 'Coimbatore',
-      category: 'announcements',
-    }
-  ];
+  // Fetch News from Supabase and Group them
+  useEffect(() => {
+    const fetchNews = async () => {
+      setLoading(true);
+      try {
+        // Fetch ALL news items regardless of language
+        const { data, error } = await supabase
+          .from('news_items')
+          .select('*')
+          .order('event_date', { ascending: false }) // Prioritize event date
+          .order('created_at', { ascending: false });
 
-  // Save language to localStorage whenever it changes
+        if (error) throw error;
+
+        const transformedData = data.map(item => {
+          // Determine which language content to show
+          // 1. New Bilingual Columns
+          const titleTa = item.title_ta;
+          const descTa = item.description_ta;
+          const titleEn = item.title_en;
+          const descEn = item.description_en;
+
+          // 2. Legacy Columns
+          const legacyTitle = item.title;
+          const legacyDesc = item.description;
+          const legacyLang = item.lang;
+
+          // 3. Selection Logic
+          let displayTitle = '';
+          let displayDesc = '';
+
+          if (language === 'ta') {
+            // Prefer Tamil specific, then fallback to Legacy if legacy was Tamil, else fallback to English, else Legacy
+            displayTitle = titleTa || (legacyLang === 'ta' ? legacyTitle : '') || titleEn || legacyTitle;
+            displayDesc = descTa || (legacyLang === 'ta' ? legacyDesc : '') || descEn || legacyDesc;
+          } else {
+            // Prefer English specific, then fallback to Legacy if legacy was English, else fallback to Tamil, else Legacy
+            displayTitle = titleEn || (legacyLang === 'en' ? legacyTitle : '') || titleTa || legacyTitle;
+            displayDesc = descEn || (legacyLang === 'en' ? legacyDesc : '') || descTa || legacyDesc;
+          }
+
+          // Filter out items that are completely irrelevant? 
+          // e.g. if I am viewing English and there is ONLY Tamil content (Legacy Tamil), maybe I shouldn't see it?
+          // For now, I will show everything to be safe, as "Untranslated News" is better than "No News".
+
+          return {
+            id: item.id,
+            title: displayTitle,
+            description: displayDesc,
+
+            date: item.event_date || item.date_str || new Date(item.created_at).toLocaleDateString(),
+            event_date: item.event_date,
+            location: language === 'ta' ? 'தமிழ்நாடு' : 'Tamil Nadu',
+            images: (item.image_urls && item.image_urls.length > 0)
+              ? item.image_urls
+              : (item.image_url ? [item.image_url] : ['https://via.placeholder.com/600x400?text=TMC+News'])
+          };
+        });
+
+        setNewsData(transformedData);
+      } catch (err) {
+        console.error('Error fetching news:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNews();
+  }, [language]);
+
+
+  const openModal = (news) => {
+    setSelectedNews(news);
+    setCurrentImageIndex(0);
+    setModalOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    document.body.style.overflow = 'auto';
+  };
+
+  const nextImage = (e) => {
+    e.stopPropagation();
+    if (selectedNews && selectedNews.images) {
+      setCurrentImageIndex((prev) => (prev + 1) % selectedNews.images.length);
+    }
+  };
+
+  const prevImage = (e) => {
+    e.stopPropagation();
+    if (selectedNews && selectedNews.images) {
+      setCurrentImageIndex((prev) => (prev - 1 + selectedNews.images.length) % selectedNews.images.length);
+    }
+  };
+
+  // Pagination logic
+  const indexOfLastNews = currentPage * newsPerPage;
+  const indexOfFirstNews = indexOfLastNews - newsPerPage;
+  const currentNews = newsData.slice(indexOfFirstNews, indexOfLastNews);
+  const totalPages = Math.ceil(newsData.length / newsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Save language
   useEffect(() => {
     localStorage.setItem('tmc-tn-language', language);
   }, [language]);
 
-  // Scroll to top when component mounts
+  // Scroll to top
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   // Handle scroll
@@ -204,48 +215,25 @@ const News = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Calculate pagination
-  const indexOfLastNews = currentPage * newsPerPage;
-  const indexOfFirstNews = indexOfLastNews - newsPerPage;
-  const currentNews = newsData.slice(indexOfFirstNews, indexOfLastNews);
-  const totalPages = Math.ceil(newsData.length / newsPerPage);
-
-  // Format date
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString(language === 'ta' ? 'ta-IN' : 'en-IN', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    });
-  };
-
-  // Handle page change
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  // Handle language change
-  const handleLanguageChange = (newLanguage) => {
-    setLanguage(newLanguage);
-  };
 
   return (
     <div className="news-container">
-      <Navbar 
+      <Navbar
         scrolled={scrolled}
         language={language}
-        setLanguage={handleLanguageChange}
+        setLanguage={setLanguage}
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
         t={t}
       />
-      
+
       {/* Hero Section */}
       <section className="news-hero">
         <div className="news-container-inner">
           <div className="news-hero-content">
+            <div className="news-hero-decoration">
+              <div className="news-hero-tricolor-line"></div>
+            </div>
             <h1 className={`news-hero-title ${language === 'ta' ? 'news-tamil-text' : ''}`}>
               {t.title}
             </h1>
@@ -256,107 +244,237 @@ const News = () => {
         </div>
       </section>
 
-      {/* Results Info */}
-      <section className="news-controls">
-        <div className="news-container-inner">
-          <div className="news-results-info">
-            <p className={`${language === 'ta' ? 'news-tamil-text' : ''}`}>
-              {t.showing} <strong>{newsData.length}</strong> {t.results}
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Main Content Area */}
+      <div className="news-main-container">
+        <div className="news-container-inner news-layout">
 
-      {/* News Gallery */}
-      <section className="news-gallery">
-        <div className="news-container-inner">
-          <div className="news-grid">
-            {currentNews.map((news) => (
-              <div key={news.id} className="news-card">
-                {/* News Image */}
-                <div className="news-card-image">
-                  <div 
-                    className="news-image"
-                    style={{
-                      backgroundImage: `url(${news.image})`,
-                      backgroundColor: '#138808'
-                    }}
-                  >
-                    {/* Fallback for missing image */}
-                    {!news.image && (
-                      <div className="news-image-fallback">
-                        {news.title.charAt(0)}
+          {/* Left Column: News Feed */}
+          <div className="news-feed">
+            {loading ? (
+              <div style={{ padding: '2rem', textAlign: 'center' }}>Loading news...</div>
+            ) : currentNews.length === 0 ? (
+              <div style={{ padding: '2rem', textAlign: 'center' }}>No news found.</div>
+            ) : (
+              currentNews.map((news) => (
+                <article key={news.id} className="news-article">
+
+                  {/* Featured Image GRID Style */}
+                  <div className="news-gallery-grid" onClick={() => openModal(news)} style={{ cursor: 'pointer', marginBottom: '1rem' }}>
+                    {/* 
+                            Display logic: 
+                            If 1 image -> full width
+                            If 2 images -> 50/50
+                            If 3+ -> 1 big, 2 small using CSS grid or simple flex hacks 
+                            For now, restoring the "Gallery" look by showing just the first few 
+                        */}
+                    <div className="gallery-preview-container" style={{ display: 'grid', gridTemplateColumns: news.images.length > 1 ? 'repeat(2, 1fr)' : '1fr', gap: '4px' }}>
+                      {news.images.slice(0, 4).map((img, idx) => (
+                        <img key={idx} src={img} alt="" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '4px' }} />
+                      ))}
+                      {/* Overlay if more than 4 images? Not needed for chunks of 4 */}
+                    </div>
+                  </div>
+
+                  <div className="news-article-body">
+
+
+                    {/* Date Box */}
+                    <div className="news-date-box">
+                      <span className="news-date-month">
+                        {new Date(news.date).toLocaleDateString(language === 'ta' ? 'ta-IN' : 'en-US', { month: 'short' })}
+                      </span>
+                      <span className="news-date-day">
+                        {new Date(news.date).getDate()}
+                      </span>
+                    </div>
+
+                    {/* Content */}
+                    <div className="news-article-content">
+                      <h2 className={`news-article-title ${language === 'ta' ? 'news-tamil-text' : ''}`}>
+                        {news.title}
+                      </h2>
+
+                      <div className="news-article-meta">
+                        <span className="news-category-link">
+                          {language === 'ta' ? 'செய்திகள்' : 'News'}
+                        </span>
+                        <span className="news-meta-divider">/</span>
+                        <span className="news-location">
+                          {news.location}
+                        </span>
                       </div>
-                    )}
+
+                      <p className={`news-article-excerpt ${language === 'ta' ? 'news-tamil-text' : ''}`}>
+                        {news.description && news.description.substring(0, 150)}...
+                      </p>
+
+                      <button
+                        className="news-read-more-btn"
+                        onClick={() => openModal(news)}
+                      >
+                        {t.readMore}
+                      </button>
+                    </div>
                   </div>
-                 
+                </article>
+              ))
+            )}
+
+            {/* Pagination */}
+            {!loading && newsData.length > newsPerPage && (
+              <div className="news-pagination">
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="news-pagination-button"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+
+                <div className="news-page-numbers">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                    <button
+                      key={page}
+                      onClick={() => handlePageChange(page)}
+                      className={`news-page-number ${currentPage === page ? 'active' : ''}`}
+                    >
+                      {page}
+                    </button>
+                  ))}
                 </div>
 
-                {/* News Content */}
-                <div className="news-card-content">
-                  <h3 className={`news-card-title ${language === 'ta' ? 'news-tamil-text' : ''}`}>
-                    {news.title}
-                  </h3>
-                  <p className={`news-card-description ${language === 'ta' ? 'news-tamil-text' : ''}`}>
-                    {news.description}
-                  </p>
-                  
-                  {/* Meta Info */}
-                  <div className="news-card-meta">
-                    <div className="news-meta-item">
-                      <Calendar size={14} />
-                      <span>{formatDate(news.date)}</span>
-                    </div>
-                    <div className="news-meta-item">
-                      <MapPin size={14} />
-                      <span>{news.location}</span>
-                    </div>
-                  </div>
-                </div>
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className="news-pagination-button"
+                >
+                  <ChevronRight size={16} />
+                </button>
               </div>
-            ))}
+            )}
           </div>
 
-          {/* Pagination */}
-          {newsData.length > newsPerPage && (
-            <div className="news-pagination">
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="news-pagination-button"
-              >
-                <ChevronLeft size={16} />
-                <span>{t.prev}</span>
-              </button>
+          {/* Right Column: Sidebar */}
+          <aside className="news-sidebar">
+            {/* Search Widget */}
+            <div className="sidebar-widget search-widget">
+              <div className="search-form">
+                <input
+                  type="text"
+                  placeholder={language === 'ta' ? 'தேடுக...' : 'Search...'}
+                  className={`search-input ${language === 'ta' ? 'news-tamil-text' : ''}`}
+                />
+                <button className="search-submit">
+                  {language === 'ta' ? 'தேடு' : 'Search'}
+                </button>
+              </div>
+            </div>
 
-              <div className="news-page-numbers">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <button
-                    key={page}
-                    onClick={() => handlePageChange(page)}
-                    className={`news-page-number ${currentPage === page ? 'active' : ''}`}
-                  >
-                    {page}
-                  </button>
+            {/* Recent Posts Widget */}
+            <div className="sidebar-widget recent-posts-widget">
+              <h3 className={`widget-title ${language === 'ta' ? 'news-tamil-text' : ''}`}>
+                {language === 'ta' ? 'சமீபத்திய செய்திகள்' : 'Recent News'}
+              </h3>
+              <div className="widget-content">
+                {newsData.slice(0, 5).map((post) => (
+                  <div key={post.id} className="sidebar-post">
+                    <div
+                      className="sidebar-post-thumbnail"
+                      style={{ backgroundImage: `url(${post.images[0]})` }}
+                    ></div>
+                    <div className="sidebar-post-info">
+                      <h4 className={`sidebar-post-title ${language === 'ta' ? 'news-tamil-text' : ''}`}>
+                        {post.title}
+                      </h4>
+                    </div>
+                  </div>
                 ))}
               </div>
+            </div>
+          </aside>
 
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className="news-pagination-button"
-              >
-                <span>{t.next}</span>
-                <ChevronRight size={16} />
+        </div>
+      </div>
+
+      {/* Detailed News Modal with Gallery Slider */}
+      {modalOpen && selectedNews && (
+        <div className="news-modal-overlay" onClick={closeModal}>
+          <div className="news-modal-container" onClick={(e) => e.stopPropagation()}>
+
+            <div className="news-modal-header-controls">
+              <button className="news-modal-close-btn" onClick={closeModal}>
+                <X size={24} />
               </button>
             </div>
-          )}
-        </div>
-      </section>
 
-      <Footer 
+            <div className="news-modal-scroll-content">
+              <div className="news-detail-logo-header">
+                <h2 className="news-detail-logo-text">AITMC TAMIL NADU</h2>
+              </div>
+
+              <div className="news-detail-breadcrumbs">
+                <span>{language === 'ta' ? 'முகப்பு' : 'Home'}</span>
+                <span className="separator">/</span>
+                <span>{language === 'ta' ? 'செய்திகள்' : 'News'}</span>
+                <span className="separator">/</span>
+                <span className="current">{selectedNews.title}</span>
+              </div>
+
+              <h1 className={`news-detail-title ${language === 'ta' ? 'news-tamil-text' : ''}`}>
+                {selectedNews.title}
+              </h1>
+
+
+              <div className="news-detail-meta">
+                <span className="news-detail-author">
+                  {language === 'ta' ? 'AITMC IT பிரிவு' : 'By AITMC IT WING'}
+                </span>
+                <span className="meta-pipe">|</span>
+                <span className="news-detail-date">{selectedNews.date}</span>
+              </div>
+
+              {/* Gallery Slider Logic */}
+              <div className="news-detail-featured-image" style={{ position: 'relative' }}>
+                <img src={selectedNews.images[currentImageIndex]} alt={selectedNews.title} />
+
+                {selectedNews.images.length > 1 && (
+                  <>
+                    <button onClick={prevImage} className="gallery-nav-btn prev" style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(0,0,0,0.5)', color: 'white', border: 'none', padding: '10px', cursor: 'pointer', borderRadius: '50%' }}>
+                      <ChevronLeft size={24} />
+                    </button>
+                    <button onClick={nextImage} className="gallery-nav-btn next" style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(0,0,0,0.5)', color: 'white', border: 'none', padding: '10px', cursor: 'pointer', borderRadius: '50%' }}>
+                      <ChevronRight size={24} />
+                    </button>
+                    <div className="gallery-dots" style={{ position: 'absolute', bottom: '10px', left: '0', right: '0', display: 'flex', justifyContent: 'center', gap: '5px' }}>
+                      {selectedNews.images.map((_, idx) => (
+                        <div key={idx} style={{ width: '8px', height: '8px', borderRadius: '50%', background: idx === currentImageIndex ? '#138808' : 'white', cursor: 'pointer' }} onClick={() => setCurrentImageIndex(idx)}></div>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+
+              <div className={`news-detail-content ${language === 'ta' ? 'news-tamil-text' : ''}`}>
+                <p className="lead-paragraph">{selectedNews.description}</p>
+              </div>
+
+              <div className="news-detail-footer">
+                <div className="news-share-buttons">
+                  <span>{t.share}:</span>
+                  <button className="share-btn fb">Facebook</button>
+                  <button className="share-btn tw">X (Twitter)</button>
+                  <button className="share-btn wa">WhatsApp</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      )}
+
+      <Footer
         language={language}
-        setLanguage={handleLanguageChange}
+        setLanguage={setLanguage}
         t={t}
       />
     </div>

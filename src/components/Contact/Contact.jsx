@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import './Contact.css';
 import Footer from '../Home/Footer';
 import Navbar from '../Home/Navbar';
-import { 
+import {
   Phone,
   Mail,
   MapPin,
@@ -197,7 +197,7 @@ const Contact = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validation
     if (!formData.name || !formData.email || !formData.subject || !formData.message) {
       setFormStatus({
@@ -232,13 +232,13 @@ const Contact = () => {
     setTimeout(() => {
       // In real implementation, this would be an actual API call
       console.log('Form data:', formData);
-      
-      setFormStatus({ 
-        submitting: false, 
-        submitted: true, 
-        error: null 
+
+      setFormStatus({
+        submitting: false,
+        submitted: true,
+        error: null
       });
-      
+
       // Reset form
       setFormData({
         name: '',
@@ -257,7 +257,7 @@ const Contact = () => {
 
   // Render social media icon based on name
   const renderSocialIcon = (iconName) => {
-    switch(iconName) {
+    switch (iconName) {
       case 'Facebook':
         return <Facebook size={20} />;
       case 'Twitter':
@@ -271,7 +271,7 @@ const Contact = () => {
 
   return (
     <div className="contact-container">
-      <Navbar 
+      <Navbar
         scrolled={scrolled}
         language={language}
         setLanguage={handleLanguageChange}
@@ -279,11 +279,14 @@ const Contact = () => {
         setMobileMenuOpen={setMobileMenuOpen}
         t={t}
       />
-      
+
       {/* Hero Section */}
       <section className="contact-hero">
         <div className="contact-container-inner">
           <div className="contact-hero-content">
+            <div className="contact-hero-decoration">
+              <div className="contact-hero-tricolor-line"></div>
+            </div>
             <h1 className={`contact-hero-title ${language === 'ta' ? 'contact-tamil-text' : ''}`}>
               {t.title}
             </h1>
@@ -305,8 +308,8 @@ const Contact = () => {
                   {t.contactForm}
                 </h2>
                 <p className={`contact-section-subtitle ${language === 'ta' ? 'contact-tamil-text' : ''}`}>
-                  {language === 'ta' 
-                    ? 'உங்கள் கருத்துகள் மற்றும் கேள்விகளை எங்களுக்கு அனுப்புங்கள்' 
+                  {language === 'ta'
+                    ? 'உங்கள் கருத்துகள் மற்றும் கேள்விகளை எங்களுக்கு அனுப்புங்கள்'
                     : 'Send us your feedback, questions, or inquiries'}
                 </p>
               </div>
@@ -438,8 +441,8 @@ const Contact = () => {
                   {t.contactInfo}
                 </h2>
                 <p className={`contact-section-subtitle ${language === 'ta' ? 'contact-tamil-text' : ''}`}>
-                  {language === 'ta' 
-                    ? 'எங்களை எப்படி தொடர்பு கொள்வது' 
+                  {language === 'ta'
+                    ? 'எங்களை எப்படி தொடர்பு கொள்வது'
                     : 'How to reach us'}
                 </p>
               </div>
@@ -547,17 +550,23 @@ const Contact = () => {
                 </h3>
                 <div className="contact-map-container">
                   {/* Map Placeholder - In real implementation, use Google Maps or similar */}
-                  <div className="contact-map-placeholder">
-                    <div className="contact-map-overlay">
-                      <MapPin size={32} />
-                      <p className={`${language === 'ta' ? 'contact-tamil-text' : ''}`}>
-                        {t.headquarters}
-                      </p>
-                    </div>
+                  {/* Google Map */}
+                  <div className="contact-map-placeholder" style={{ background: '#f8f9fa' }}>
+                    <iframe
+                      src="https://maps.google.com/maps?q=9.938148,78.075050&z=15&output=embed"
+                      width="100%"
+                      height="100%"
+                      frameBorder="0"
+                      style={{ border: 0 }}
+                      allowFullScreen=""
+                      aria-hidden="false"
+                      tabIndex="0"
+                      title="TMC Tamil Nadu Office Location"
+                    ></iframe>
                   </div>
                   <p className="contact-map-note">
-                    {language === 'ta' 
-                      ? 'நாங்கள் இங்கே இருக்கிறோம்! எங்களை சந்திக்க வாருங்கள்' 
+                    {language === 'ta'
+                      ? 'நாங்கள் இங்கே இருக்கிறோம்! எங்களை சந்திக்க வாருங்கள்'
                       : 'We are here! Come visit us at our headquarters'}
                   </p>
                 </div>
@@ -567,7 +576,7 @@ const Contact = () => {
         </div>
       </section>
 
-      <Footer 
+      <Footer
         language={language}
         setLanguage={handleLanguageChange}
         t={t}

@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { 
-  Target, 
-  Users, 
-  MapPin, 
-  Trophy, 
-  Heart, 
-  GraduationCap, 
-  Sprout, 
-  Construction, 
-  Briefcase, 
-  UserCheck, 
-  Compass, 
-  Leaf, 
-  Laptop, 
-  Calendar, 
+import {
+  Target,
+  Users,
+  MapPin,
+  Trophy,
+  Heart,
+  GraduationCap,
+  Sprout,
+  Construction,
+  Briefcase,
+  UserCheck,
+  Compass,
+  Leaf,
+  Laptop,
+  Calendar,
   ArrowRight,
   X,
   Play,
@@ -66,19 +66,19 @@ const Initiatives = () => {
       title: 'Our Initiatives',
       subtitle: 'Transforming Tamil Nadu Through Action',
       description: 'Discover the impactful initiatives and programs launched by Trinamool Congress leaders across Tamil Nadu. Each project is designed to empower communities, drive development, and create lasting positive change.',
-      
+
       // Leaders Section
       leadersTitle: 'Meet Our Initiative Leaders',
       leadersSubtitle: 'Dedicated leaders driving change across Tamil Nadu',
-      
+
       // Impact Stories
       impactTitle: 'Impact Stories',
       impactSubtitle: 'Real stories of transformation from our initiatives',
-      
+
       // Timeline
       timelineTitle: 'Initiative Timeline',
       timelineSubtitle: 'Track the progress of our initiatives',
-      
+
       // How to Participate
       participateTitle: 'How to Participate',
       participateSteps: [
@@ -87,15 +87,15 @@ const Initiatives = () => {
         'Volunteer for implementation',
         'Monitor progress and provide feedback'
       ],
-      
+
       // Download Resources
       downloadTitle: 'Resources',
-      
+
       // View Details
       viewDetails: 'View Details',
       learnMore: 'Learn More',
       backToList: 'Back to Initiatives',
-      
+
       // Status
       status: {
         ongoing: 'Ongoing',
@@ -118,19 +118,19 @@ const Initiatives = () => {
       title: 'எங்கள் செயல்திட்டங்கள்',
       subtitle: 'செயல்பாட்டின் மூலம் தமிழ்நாட்டை மாற்றுகிறோம்',
       description: 'தமிழ்நாடு முழுவதும் திரிணமூல் காங்கிரஸ் தலைவர்கள் தொடங்கிய தாக்கமுள்ள செயல்திட்டங்கள் மற்றும் நிகழ்ச்சிகளைக் கண்டறியவும். ஒவ்வொரு திட்டமும் சமூகங்களை அதிகாரப்படுத்த, வளர்ச்சியை ஊக்குவித்து, நிலையான நேர்மறை மாற்றத்தை உருவாக்க வடிவமைக்கப்பட்டுள்ளது.',
-      
+
       // Leaders Section
       leadersTitle: 'எங்கள் திட்டத் தலைவர்களைச் சந்திக்கவும்',
       leadersSubtitle: 'தமிழ்நாடு முழுவதும் மாற்றத்தை ஏற்படுத்தும் அர்ப்பணித்த தலைவர்கள்',
-      
+
       // Impact Stories
       impactTitle: 'தாக்கக் கதைகள்',
       impactSubtitle: 'எங்கள் செயல்திட்டங்களின் உண்மையான மாற்றக் கதைகள்',
-      
+
       // Timeline
       timelineTitle: 'திட்ட காலக்கோடு',
       timelineSubtitle: 'எங்கள் செயல்திட்டங்களின் முன்னேற்றத்தைக் கண்காணிக்கவும்',
-      
+
       // How to Participate
       participateTitle: 'எப்படி பங்கேற்கலாம்',
       participateSteps: [
@@ -139,15 +139,15 @@ const Initiatives = () => {
         'செயல்படுத்துவதற்கு தன்னார்வலராகுங்கள்',
         'முன்னேற்றத்தைக் கண்காணித்து கருத்தைத் தெரிவிக்கவும்'
       ],
-      
+
       // Download Resources
       downloadTitle: 'வளங்கள்',
-      
+
       // View Details
       viewDetails: 'விவரங்களைக் காண்க',
       learnMore: 'மேலும் அறிக',
       backToList: 'செயல்திட்டங்களுக்குத் திரும்பு',
-      
+
       // Status
       status: {
         ongoing: 'நடந்து கொண்டிருக்கிறது',
@@ -312,29 +312,29 @@ const Initiatives = () => {
   const leaders = [
     {
       id: 1,
-      name: language === 'ta' ? 'திரு. எம்.கே.எஸ். மோகன்' : 'Mr. M.K.S. Mohan',
+      name: language === 'ta' ? 'வழக்கறிஞர் உமா கிரிதரன் BA LLB' : 'Advocate Uma Giridharan BA LLB',
       role: language === 'ta' ? 'மாநில தலைவர்' : 'State President',
       district: 'Chennai',
-      initiativesCount: 12,
-      image: '/mks-mohan.jpg',
-      bio: language === 'ta' 
-        ? '20+ ஆண்டுகள் அனுபவம், 50+ திட்டங்களை முன்னெடுத்துள்ளார். கல்வி மற்றும் சுகாதாரத் திட்டங்களில் நிபுணத்துவம்.' 
-        : '20+ years experience, spearheaded 50+ initiatives. Expert in education and healthcare projects.',
-      contact: 'mksmohan@tmctn.org',
-      phone: '+91 9876543210'
+      initiativesCount: 15,
+      image: '/media/img_18.jpg',
+      bio: language === 'ta'
+        ? 'சமூக நீதி மற்றும் மக்கள் நலன் சார்ந்த கொள்கைகளுக்காக அர்ப்பணிப்புடன் பணியாற்றுபவர். 20+ ஆண்டுகள் அனுபவம்.'
+        : 'Dedicated to social justice and people-centric policies. 20+ years of experience.',
+      contact: 'uma@tmctn.org',
+      phone: '+91 94874 46195'
     },
     {
       id: 2,
-      name: language === 'ta' ? 'திருமதி. ராதிகா சங்கர்' : 'Mrs. Radhika Shankar',
-      role: language === 'ta' ? 'பொது செயலாளர்' : 'General Secretary',
+      name: language === 'ta' ? 'திரு. P. S. சண்முகநாதன்' : 'Mr. P. S. Shanmuganathan',
+      role: language === 'ta' ? 'மாநில பொது செயலாளர்' : 'State General Secretary',
       district: 'Madurai',
-      initiativesCount: 8,
-      image: '/radhika-shankar.jpg',
-      bio: language === 'ta' 
-        ? 'பெண்கள் மேம்பாட்டு மற்றும் சிறு தொழில் திட்டங்களில் சிறப்பு. 10000+ பெண்களுக்கு பயிற்சி அளித்துள்ளார்.' 
-        : 'Specializes in women development and small business initiatives. Trained 10000+ women.',
-      contact: 'radhika@tmctn.org',
-      phone: '+91 9876543211'
+      initiativesCount: 10,
+      image: '/media/img_19.jpg',
+      bio: language === 'ta'
+        ? 'மக்களின் அடிப்படை உரிமைகளுக்காகவும், தமிழ்நாட்டின் வளர்ச்சிக்காகவும் தொடர்ந்து குரல் கொடுக்கும் அனுபவம் வாய்ந்த தலைவர்.'
+        : 'An experienced leader consistently voicing out for people\'s rights and the development of Tamil Nadu.',
+      contact: 'shanmu@tmctn.org',
+      phone: '+91 90878 08087'
     }
   ];
 
@@ -345,8 +345,8 @@ const Initiatives = () => {
       name: language === 'ta' ? 'ராஜேஸ்வரி' : 'Rajeshwari',
       location: language === 'ta' ? 'மதுரை' : 'Madurai',
       initiativeId: 3,
-      story: language === 'ta' 
-        ? 'மாதவிலக்கு பொருட்கள் திட்டம் என் வாழ்க்கையை மாற்றியது. இப்போது நான் பள்ளியில் தொடர்ந்து படிக்க முடிகிறது.' 
+      story: language === 'ta'
+        ? 'மாதவிலக்கு பொருட்கள் திட்டம் என் வாழ்க்கையை மாற்றியது. இப்போது நான் பள்ளியில் தொடர்ந்து படிக்க முடிகிறது.'
         : 'The sanitary pads program changed my life. Now I can continue my studies without interruption.',
       image: '/rajeshwari-story.jpg',
       videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-woman-telling-her-story-4332-large.mp4',
@@ -362,8 +362,8 @@ const Initiatives = () => {
       name: language === 'ta' ? 'முருகன்' : 'Murugan',
       location: language === 'ta' ? 'திருச்சி' : 'Trichy',
       initiativeId: 2,
-      story: language === 'ta' 
-        ? 'கடன் தள்ளுபடி திட்டம் என் குடும்பத்தை காப்பாற்றியது. இப்போது என் கடன்கள் இல்லை.' 
+      story: language === 'ta'
+        ? 'கடன் தள்ளுபடி திட்டம் என் குடும்பத்தை காப்பாற்றியது. இப்போது என் கடன்கள் இல்லை.'
         : 'The loan waiver scheme saved my family. Now I have no debts.',
       image: '/murugan-story.jpg',
       videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-farmer-in-a-field-of-wheat-42826-large.mp4',
@@ -379,8 +379,8 @@ const Initiatives = () => {
       name: language === 'ta' ? 'கௌதம்' : 'Gowtham',
       location: language === 'ta' ? 'சென்னை' : 'Chennai',
       initiativeId: 1,
-      story: language === 'ta' 
-        ? 'இலவச கணினி பயிற்சி எனக்கு டேட்டா அனலிஸ்ட் வேலை கிடைக்க உதவியது. மாதம் ₹40000 சம்பளம்.' 
+      story: language === 'ta'
+        ? 'இலவச கணினி பயிற்சி எனக்கு டேட்டா அனலிஸ்ட் வேலை கிடைக்க உதவியது. மாதம் ₹40000 சம்பளம்.'
         : 'Free computer training helped me get a data analyst job. ₹40000 monthly salary.',
       image: '/gowtham-story.jpg',
       videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-young-man-working-on-a-laptop-4482-large.mp4',
@@ -396,7 +396,7 @@ const Initiatives = () => {
   // Get category icon function
   const getCategoryIcon = (category) => {
     const iconProps = { size: 24, strokeWidth: 2 };
-    switch(category) {
+    switch (category) {
       case 'health':
         return <Heart {...iconProps} />;
       case 'education':
@@ -424,7 +424,7 @@ const Initiatives = () => {
 
   // Get category color
   const getCategoryColor = (category) => {
-    switch(category) {
+    switch (category) {
       case 'health':
         return '#ef4444';
       case 'education':
@@ -452,7 +452,7 @@ const Initiatives = () => {
 
   // Get status color
   const getStatusColor = (status) => {
-    switch(status) {
+    switch (status) {
       case 'ongoing':
         return '#22c55e';
       case 'completed':
@@ -479,8 +479,8 @@ const Initiatives = () => {
       });
     } else {
       navigator.clipboard.writeText(window.location.href);
-      alert(language === 'ta' 
-        ? 'இணைப்பு நகலெடுக்கப்பட்டது!' 
+      alert(language === 'ta'
+        ? 'இணைப்பு நகலெடுக்கப்பட்டது!'
         : 'Link copied to clipboard!'
       );
     }
@@ -498,7 +498,7 @@ const Initiatives = () => {
 
   return (
     <div className="initiative-container">
-      <Navbar 
+      <Navbar
         scrolled={scrolled}
         language={language}
         setLanguage={handleLanguageChange}
@@ -506,7 +506,7 @@ const Initiatives = () => {
         setMobileMenuOpen={setMobileMenuOpen}
         t={t}
       />
-      
+
       {/* Hero Section */}
       <section className="initiative-hero">
         <div className="initiative-container-inner">
@@ -556,7 +556,7 @@ const Initiatives = () => {
                 autoPlay
                 className="initiative-story-video"
               />
-              
+
               {/* Custom Video Controls */}
               <div className="initiative-video-controls">
                 {/* Progress Bar */}
@@ -582,11 +582,11 @@ const Initiatives = () => {
                     <button className="initiative-control-btn" onClick={togglePlay}>
                       {isPlaying ? <Pause size={20} /> : <Play size={20} />}
                     </button>
-                    
+
                     <button className="initiative-control-btn" onClick={toggleMute}>
                       {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
                     </button>
-                    
+
                     <div className="initiative-volume-slider-container">
                       <input
                         type="range"
@@ -598,7 +598,7 @@ const Initiatives = () => {
                         className="initiative-volume-slider"
                       />
                     </div>
-                    
+
                     <div className="initiative-time-info">
                       <span>{formatTime(currentTime)} / {formatTime(duration)}</span>
                     </div>
@@ -616,7 +616,7 @@ const Initiatives = () => {
               </div>
             </div>
 
-          
+
           </div>
         </div>
       )}
@@ -632,18 +632,18 @@ const Initiatives = () => {
               {t.leadersSubtitle}
             </p>
           </div>
-          
+
           <div className="initiative-leaders-grid">
             {leaders.map((leader) => (
-              <div 
-                key={leader.id} 
+              <div
+                key={leader.id}
                 className="initiative-leader-card"
                 onClick={() => handleLeaderClick(leader)}
               >
                 <div className="initiative-leader-card-image">
                   {leader.image ? (
-                    <img 
-                      src={leader.image} 
+                    <img
+                      src={leader.image}
                       alt={leader.name}
                       onError={(e) => {
                         e.target.style.display = 'none';
@@ -656,7 +656,7 @@ const Initiatives = () => {
                     </div>
                   )}
                 </div>
-                
+
                 <div className="initiative-leader-card-content">
                   <h4 className={`initiative-leader-name ${language === 'ta' ? 'initiative-tamil-text' : ''}`}>
                     {leader.name}
@@ -670,11 +670,11 @@ const Initiatives = () => {
                       <span>{leader.district}</span>
                     </div>
                   </div>
-                  
+
                   <p className={`initiative-leader-bio ${language === 'ta' ? 'initiative-tamil-text' : ''}`}>
                     {leader.bio.substring(0, 100)}...
                   </p>
-                 
+
                 </div>
               </div>
             ))}
@@ -693,18 +693,18 @@ const Initiatives = () => {
               {t.impactSubtitle}
             </p>
           </div>
-          
+
           <div className="initiative-stories-grid">
             {impactStories.map((story) => (
-              <div 
-                key={story.id} 
+              <div
+                key={story.id}
                 className="initiative-impact-story-card"
                 onClick={() => handleStoryClick(story)}
               >
                 <div className="initiative-impact-story-image">
                   <div className="initiative-video-thumbnail">
-                    <img 
-                      src={story.thumbnail || story.image} 
+                    <img
+                      src={story.thumbnail || story.image}
                       alt={story.name}
                       onError={(e) => {
                         e.target.style.display = 'none';
@@ -719,7 +719,7 @@ const Initiatives = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="initiative-impact-story-content">
                   <h4 className={`initiative-story-name ${language === 'ta' ? 'initiative-tamil-text' : ''}`}>
                     {story.name}
@@ -738,11 +738,11 @@ const Initiatives = () => {
                       <span>{story.views.toLocaleString()}</span>
                     </div>
                   </div>
-                  
+
                   <p className={`initiative-story-text ${language === 'ta' ? 'initiative-tamil-text' : ''}`}>
                     {story.story.substring(0, 120)}...
                   </p>
-                  
+
                   <button className="initiative-watch-story-btn">
                     <span>{language === 'ta' ? 'கதையைப் பார்க்கவும்' : 'Watch Story'}</span>
                     <Play size={16} />
@@ -754,7 +754,7 @@ const Initiatives = () => {
         </div>
       </section>
 
-      <Footer 
+      <Footer
         language={language}
         setLanguage={handleLanguageChange}
         t={t}

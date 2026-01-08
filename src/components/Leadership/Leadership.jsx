@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 import './Leadership.css';
 import Navbar from '../Home/Navbar';
 import Footer from '../Home/Footer';
-import { 
-  Clock, 
-  MapPin, 
-  CheckCircle, 
-  Award, 
-  Target, 
-  Users, 
-  UserCircle, 
-  Mail, 
+import {
+  Clock,
+  MapPin,
+  CheckCircle,
+  Award,
+  Target,
+  Users,
+  UserCircle,
+  Mail,
   ArrowRight,
   Home,
   ChevronRight,
@@ -101,63 +101,73 @@ const Leadership = () => {
       leaders: [
         {
           id: 1,
-          name: 'திரு. எம்.கே.எஸ். மோகன்',
+          name: 'வழக்கறிஞர் உமா கிரிதரன் BA LLB',
           role: 'மாநில தலைவர்',
-          bio: 'தமிழ்நாட்டின் வளர்ச்சிக்காகவும், சமூக நீதிக்காகவும் 20 ஆண்டுகள் அர்ப்பணித்த மக்கள் தலைவர். அரசியலில் நேர்மை மற்றும் நெறிமுறைகளுக்கு முன்மாதிரி. விவசாயிகள் மற்றும் தொழிலாளர்களின் உரிமைகளுக்காக தீவிரமாக போராடியவர்.',
+          bio: 'தமிழ்நாட்டுக்கான அகில இந்திய திரிணமூல் காங்கிரஸ் மாநில தலைவர். சமூக நீதி மற்றும் மக்கள் நலன் சார்ந்த கொள்கைகளுக்காக அர்ப்பணிப்புடன் பணியாற்றுபவர். கட்சியின் வளர்ச்சியை முன்னெடுத்துச் செல்பவர்.',
           experience: '20+ ஆண்டுகள்',
           district: 'சென்னை',
           category: 'state',
-          image: '/leaders/mks-mohan.jpg'
+          image: '/media/img_18.jpg'
         },
         {
           id: 2,
-          name: 'திருமதி. ராதிகா சங்கர்',
-          role: 'பொது செயலாளர்',
-          bio: 'பெண்கள் அதிகாரமளித்தல், கல்வி மற்றும் சமூக நீதிக்காக போராடும் தீவிர ஆர்வலர். மக்கள் பிரச்சினைகளுக்கு குரல் கொடுப்பவர். 15 ஆண்டுகளுக்கும் மேலாக சமூக சேவையில் ஈடுபட்டுள்ளார்.',
-          experience: '15+ ஆண்டுகள்',
+          name: 'திரு. P. S. சண்முகநாதன்',
+          role: 'மாநில பொது செயலாளர்',
+          bio: 'மக்களின் அடிப்படை உரிமைகளுக்காகவும், தமிழ்நாட்டின் வளர்ச்சிக்காகவும் தொடர்ந்து குரல் கொடுக்கும் அனுபவம் வாய்ந்த தலைவர். அடிமட்டத் தொண்டர்களுடன் நெருங்கிப் பணியாற்றுபவர்.',
+          experience: '25+ ஆண்டுகள்',
           district: 'மதுரை',
           category: 'state',
-          image: '/leaders/radhika-shankar.jpg'
+          image: '/media/img_19.jpg'
         },
         {
           id: 3,
-          name: 'திரு. அரவிந்த் குமார்',
-          role: 'மாநில பொருளாளர்',
-          bio: 'பொருளாதார நிபுணர், வளர்ச்சி திட்ட வடிவமைப்பாளர் மற்றும் மக்கள் நலன் சார்ந்த கொள்கை வகுப்பவர். நிதி நிர்வாகத்தில் கெட்டிக்காரர். தொழில் வளர்ச்சி மற்றும் இளைஞர் வேலைவாய்ப்புக்காக பணியாற்றியவர்.',
-          experience: '18+ ஆண்டுகள்',
-          district: 'கோயம்புத்தூர்',
-          category: 'state',
-          image: '/leaders/aravind-kumar.jpg'
+          name: 'திரு. M. கிரிதரன்',
+          role: 'மாவட்ட செயலாளர்',
+          bio: 'தென்காசி மாவட்டத்தின் சிறந்த மக்கள் தலைவர். எளிய மக்களின் துயர் துடைப்பதில் முன்நிற்பவர். மாவட்ட அளவில் கட்சியின் கொள்கைகளை கொண்டு சேர்ப்பவர்.',
+          experience: '15+ ஆண்டுகள்',
+          district: 'தென்காசி',
+          category: 'regional',
+          image: '/media/img_20.jpg'
         },
         {
           id: 4,
-          name: 'திரு. விஜய் குமார்',
-          role: 'தென் மண்டல செயலாளர்',
-          bio: 'மதுரை மண்டலத்தின் பிரபலமான இளைஞர் தலைவர். கல்வி மற்றும் இளைஞர் அதிகாரமளித்தல் திட்டங்களுக்காக அறியப்பட்டவர். 10,000 க்கும் மேற்பட்ட இளைஞர்களை இயக்கத்தில் இணைத்துள்ளார்.',
+          name: 'திருமதி. N. பாக்கியலட்சுமி',
+          role: 'மாவட்ட செயலாளர்',
+          bio: 'திருநெல்வேலி மாவட்டத்தின் துடிப்பான பெண் தலைவர். பெண்கள் முன்னேற்றம் and கல்விக்காக தொடர்ந்து பாடுபடுபவர்.',
           experience: '12+ ஆண்டுகள்',
-          district: 'மதுரை',
+          district: 'திருநெல்வேலி',
           category: 'regional',
-          image: '/leaders/vijay-kumar.jpg'
+          image: '/media/img_21.jpg'
         },
         {
           id: 5,
-          name: 'திருமதி. கௌரி சிவானந்தம்',
-          role: 'வட மண்டல செயலாளர்',
-          bio: 'சென்னை மற்றும் சுற்றுவட்டார பகுதிகளில் பிரபலமான பெண் தலைவர். பெண்கள் பாதுகாப்பு மற்றும் சமத்துவத்திற்காக போராடியவர். பல கல்வி மற்றும் சுகாதார முகாம்களை நடத்தியுள்ளார்.',
-          experience: '14+ ஆண்டுகள்',
-          district: 'சென்னை',
+          name: 'ஸ்ரீ கலா K V',
+          role: 'மாவட்ட செயலாளர்',
+          bio: 'நாகர்கோவில் பகுதியின் செல்வாக்குமிக்க தலைவர். மக்களின் அடிப்படைத் தேவைகளுக்காகவும் உள்கட்டமைப்பு வசதிகளுக்காகவும் போராடுபவர்.',
+          experience: '10+ ஆண்டுகள்',
+          district: 'நாகர்கோவில்',
           category: 'regional',
-          image: '/leaders/gowri-sivanandam.jpg'
+          image: '/media/img_22.jpg'
         },
         {
           id: 6,
-          name: 'திரு. ராஜேஷ் பாண்டே',
-          role: 'மேற்கு மண்டல செயலாளர்',
-          bio: 'கோயம்புத்தூர் மற்றும் அருகிலுள்ள மாவட்டங்களில் பிரபலமான தொழிலதிபர் மற்றும் அரசியல்வாதி. தொழில் வளர்ச்சி மற்றும் சிறு தொழில்களுக்கு ஆதரவு அளிப்பவர். 500+ தொழில் நிறுவனங்களுக்கு வழிகாட்டியுள்ளார்.',
-          experience: '16+ ஆண்டுகள்',
-          district: 'கோயம்புத்தூர்',
+          name: 'திருமதி. திவ்யா',
+          role: 'மாவட்ட செயலாளர்',
+          bio: 'மதுரை மாவட்டத்தின் இளம் மற்றும் உத்வேகமான தலைவர். இளைஞர்களை அரசியலில் ஆக்கப்பூர்வமாக ஈடுபடுத்துபவர்.',
+          experience: '8+ ஆண்டுகள்',
+          district: 'மதுரை',
           category: 'regional',
-          image: '/leaders/rajesh-pande.jpg'
+          image: '/media/img_23.jpg'
+        },
+        {
+          id: 7,
+          name: 'டாக்டர் K. விஜி குமார்',
+          role: 'மாவட்ட செயலாளர்',
+          bio: 'கன்னியாகுமரி மாவட்டத்தின் தொலைநோக்கு சிந்தனை கொண்ட தலைவர். சுகாதாரம் மற்றும் சமூக மேம்பாட்டிற்காக அர்ப்பணிப்புடன் பணியாற்றுபவர்.',
+          experience: '15+ ஆண்டுகள்',
+          district: 'கன்னியாகுமரி',
+          category: 'regional',
+          image: '/media/img_24.jpg'
         }
       ],
       categories: {
@@ -220,63 +230,73 @@ const Leadership = () => {
       leaders: [
         {
           id: 1,
-          name: 'Mr. M.K.S. Mohan',
+          name: 'Advocate Uma Giridharan BA LLB',
           role: 'State President',
-          bio: 'A people\'s leader dedicated to Tamil Nadu\'s development and social justice for 20 years. A role model for integrity and ethics in politics. Actively fought for the rights of farmers and laborers.',
+          bio: 'State President of AITMC Tamil Nadu. Dedicated to social justice and people-centric policies. A visionary leader driving the party\'s growth in the state.',
           experience: '20+ Years',
           district: 'Chennai',
           category: 'state',
-          image: '/leaders/mks-mohan.jpg'
+          image: '/media/img_18.jpg'
         },
         {
           id: 2,
-          name: 'Mrs. Radhika Shankar',
-          role: 'General Secretary',
-          bio: 'Passionate activist fighting for women empowerment, education, and social justice. A voice for people\'s issues. Involved in social service for over 15 years.',
-          experience: '15+ Years',
+          name: 'Mr. P. S. Shanmuganathan',
+          role: 'State General Secretary',
+          bio: 'An experienced leader consistently voicing out for people\'s rights and the development of Tamil Nadu. Works closely with grassroots level cadres.',
+          experience: '25+ Years',
           district: 'Madurai',
           category: 'state',
-          image: '/leaders/radhika-shankar.jpg'
+          image: '/media/img_19.jpg'
         },
         {
           id: 3,
-          name: 'Mr. Aravind Kumar',
-          role: 'State Treasurer',
-          bio: 'Economic expert, development planner, and people-centric policy maker. Expertise in financial management. Worked for industrial development and youth employment.',
-          experience: '18+ Years',
-          district: 'Coimbatore',
-          category: 'state',
-          image: '/leaders/aravind-kumar.jpg'
+          name: 'Mr. M. Giridharan',
+          role: 'District Secretary',
+          bio: 'A prominent people\'s leader from Tenkasi district, dedicated to solving the issues of the common man and strengthening the party at the local level.',
+          experience: '15+ Years',
+          district: 'Tenkasi',
+          category: 'regional',
+          image: '/media/img_20.jpg'
         },
         {
           id: 4,
-          name: 'Mr. Vijay Kumar',
-          role: 'South Zonal Secretary',
-          bio: 'Popular youth leader from Madurai zone. Known for education and youth empowerment programs. Connected over 10,000 youth to the movement.',
+          name: 'Mrs. N. Bbakiyalakshmi',
+          role: 'District Secretary',
+          bio: 'A dynamic woman leader from Tirunelveli district, continuously working for the empowerment of women and quality education.',
           experience: '12+ Years',
-          district: 'Madurai',
+          district: 'Tirunelveli',
           category: 'regional',
-          image: '/leaders/vijay-kumar.jpg'
+          image: '/media/img_21.jpg'
         },
         {
           id: 5,
-          name: 'Mrs. Gowri Sivanandam',
-          role: 'North Zonal Secretary',
-          bio: 'Popular women leader from Chennai and surrounding areas. Fought for women safety and equality. Conducted several education and health camps.',
-          experience: '14+ Years',
-          district: 'Chennai',
+          name: 'SREE KALA K V',
+          role: 'District Secretary',
+          bio: 'An influential leader from Nagercoil, fighting for basic infrastructure and welfare needs of the people.',
+          experience: '10+ Years',
+          district: 'Nagercoil',
           category: 'regional',
-          image: '/leaders/gowri-sivanandam.jpg'
+          image: '/media/img_22.jpg'
         },
         {
           id: 6,
-          name: 'Mr. Rajesh Pande',
-          role: 'West Zonal Secretary',
-          bio: 'Popular businessman and politician from Coimbatore and nearby districts. Supports industrial development and small businesses. Guided 500+ business establishments.',
-          experience: '16+ Years',
-          district: 'Coimbatore',
+          name: 'Mrs. Divya',
+          role: 'District Secretary',
+          bio: 'A young and energetic leader from Madurai district, actively encouraging youth participation in constructive politics.',
+          experience: '8+ Years',
+          district: 'Madurai',
           category: 'regional',
-          image: '/leaders/rajesh-pande.jpg'
+          image: '/media/img_23.jpg'
+        },
+        {
+          id: 7,
+          name: 'Dr. K. Viji Kumar',
+          role: 'District Secretary',
+          bio: 'A visionary leader from Kanyakumari district, dedicated to health and social development efforts.',
+          experience: '15+ Years',
+          district: 'Kanyakumari',
+          category: 'regional',
+          image: '/media/img_24.jpg'
         }
       ],
       categories: {
@@ -297,8 +317,8 @@ const Leadership = () => {
     setLanguage(newLanguage);
   };
 
-  const filteredLeaders = activeCategory === 'all' 
-    ? t.leaders 
+  const filteredLeaders = activeCategory === 'all'
+    ? t.leaders
     : t.leaders.filter(leader => leader.category === activeCategory);
 
   const categories = [
@@ -310,7 +330,7 @@ const Leadership = () => {
   return (
     <div className="leadership-page">
       {/* Navigation */}
-      <Navbar 
+      <Navbar
         scrolled={false}
         language={language}
         setLanguage={handleLanguageChange}
@@ -323,6 +343,9 @@ const Leadership = () => {
       <section className="leadership-hero">
         <div className="container">
           <div className="leadership-hero-content">
+            <div className="leadership-hero-decoration">
+              <div className="leadership-hero-tricolor-line"></div>
+            </div>
             <h1 className={`leadership-title ${language === 'ta' ? 'tamil-text' : ''}`}>
               {t.pageTitle}
             </h1>
@@ -330,7 +353,7 @@ const Leadership = () => {
               {t.pageSubtitle}
             </p>
             <p className="leadership-description">
-              {language === 'ta' 
+              {language === 'ta'
                 ? 'அனுபவம் வாய்ந்த தலைமை, தெளிவான பார்வை மற்றும் மக்களுக்கான அர்ப்பணிப்பு கொண்ட தலைவர்கள்.'
                 : 'Experienced leadership with clear vision and dedication to the people.'}
             </p>
@@ -354,7 +377,7 @@ const Leadership = () => {
                 {t.mamataBanerjee.subtitle}
               </p>
             </div>
-            
+
             <div className="mamata-content">
               <div className="mamata-image-container">
                 <div className="mamata-profile-image-wrapper">
@@ -364,8 +387,8 @@ const Leadership = () => {
                       <div className="mamata-initials">MB</div>
                     </div>
                   ) : (
-                    <img 
-                      src="/mamata-bannerjee-profile.jpg" 
+                    <img
+                      src="/mamata-bannerjee-profile.jpg"
                       alt={t.mamataBanerjee.title}
                       className="mamata-profile-image"
                       onError={() => setMamataImageError(true)}
@@ -417,38 +440,8 @@ const Leadership = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="mamata-info">
-                <div className="mamata-bio-section">
-                  <h3 className={`section-heading ${language === 'ta' ? 'tamil-text' : ''}`}>
-                    <Heart size={20} className="section-icon" />
-                    {language === 'ta' ? 'தொடக்க கால வாழ்க்கை' : 'Early Life & Family'}
-                  </h3>
-                  <p className={`mamata-bio ${language === 'ta' ? 'tamil-text' : ''}`}>
-                    {t.mamataBanerjee.earlyLife}
-                  </p>
-                </div>
-                
-                <div className="mamata-education-section">
-                  <h3 className={`section-heading ${language === 'ta' ? 'tamil-text' : ''}`}>
-                    <GraduationCap size={20} className="section-icon" />
-                    {language === 'ta' ? 'கல்வி தகுதிகள்' : 'Educational Qualifications'}
-                  </h3>
-                  <p className={`mamata-bio ${language === 'ta' ? 'tamil-text' : ''}`}>
-                    {t.mamataBanerjee.education}
-                  </p>
-                </div>
-
-                <div className="mamata-student-politics">
-                  <h3 className={`section-heading ${language === 'ta' ? 'tamil-text' : ''}`}>
-                    <Users size={20} className="section-icon" />
-                    {language === 'ta' ? 'மாணவர் அரசியல்' : 'Student Politics'}
-                  </h3>
-                  <p className={`mamata-bio ${language === 'ta' ? 'tamil-text' : ''}`}>
-                    {t.mamataBanerjee.studentPolitics}
-                  </p>
-                </div>
-
                 <div className="mamata-political-career">
                   <h3 className={`section-heading ${language === 'ta' ? 'tamil-text' : ''}`}>
                     <Briefcase size={20} className="section-icon" />
@@ -459,16 +452,6 @@ const Leadership = () => {
                   </p>
                 </div>
 
-                <div className="mamata-ministerial-roles">
-                  <h3 className={`section-heading ${language === 'ta' ? 'tamil-text' : ''}`}>
-                    <Shield size={20} className="section-icon" />
-                    {language === 'ta' ? 'அமைச்சரக பதவிகள்' : 'Ministerial Roles'}
-                  </h3>
-                  <p className={`mamata-bio ${language === 'ta' ? 'tamil-text' : ''}`}>
-                    {t.mamataBanerjee.ministerialRoles}
-                  </p>
-                </div>
-                
                 <div className="mamata-achievements">
                   <h3 className={`section-heading ${language === 'ta' ? 'tamil-text' : ''}`}>
                     <Award size={20} className="section-icon" />
@@ -482,32 +465,6 @@ const Leadership = () => {
                       </li>
                     ))}
                   </ul>
-                </div>
-
-                <div className="mamata-artistic-side">
-                  <h3 className={`section-heading ${language === 'ta' ? 'tamil-text' : ''}`}>
-                    <Paintbrush size={20} className="section-icon" />
-                    {language === 'ta' ? 'கலை மற்றும் இலக்கியம்' : 'Artistic & Literary Pursuits'}
-                  </h3>
-                  <p className={`mamata-bio ${language === 'ta' ? 'tamil-text' : ''}`}>
-                    {t.mamataBanerjee.artisticSide}
-                  </p>
-                  <div className="art-stats">
-                    <div className="art-stat">
-                      <BookOpen size={20} className="art-stat-icon" />
-                      <div className="art-stat-content">
-                        <div className="art-stat-value">20+</div>
-                        <div className="art-stat-label">{language === 'ta' ? 'புத்தகங்கள்' : 'Books'}</div>
-                      </div>
-                    </div>
-                    <div className="art-stat">
-                      <Paintbrush size={20} className="art-stat-icon" />
-                      <div className="art-stat-content">
-                        <div className="art-stat-value">5000+</div>
-                        <div className="art-stat-label">{language === 'ta' ? 'ஓவியங்கள்' : 'Paintings'}</div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -526,7 +483,7 @@ const Leadership = () => {
               {language === 'ta' ? 'தமிழ்நாடு தலைமை' : 'Tamil Nadu Leadership'}
             </h2>
             <p className={`section-subtitle ${language === 'ta' ? 'tamil-text' : ''}`}>
-              {language === 'ta' 
+              {language === 'ta'
                 ? 'தமிழ்நாட்டின் எதிர்காலத்தை வடிவமைக்கும் அர்ப்பணிப்புள்ள தலைவர்கள்'
                 : 'Dedicated leaders shaping the future of Tamil Nadu'}
             </p>
@@ -551,7 +508,7 @@ const Leadership = () => {
             {filteredLeaders.map(leader => (
               <div key={leader.id} className="leader-card">
                 <div className="leader-image-container">
-                  <div 
+                  <div
                     className="leader-image"
                     style={{
                       backgroundImage: `url(${leader.image})`,
@@ -576,7 +533,7 @@ const Leadership = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="leader-info">
                   <h3 className={`leader-name ${language === 'ta' ? 'tamil-text' : ''}`}>
                     {leader.name}
@@ -586,7 +543,7 @@ const Leadership = () => {
                   </p>
                   <p className={`leader-bio ${language === 'ta' ? 'tamil-text' : ''}`}>
                     {leader.bio.substring(0, 100)}...
-                  </p>                  
+                  </p>
                 </div>
               </div>
             ))}
@@ -598,8 +555,8 @@ const Leadership = () => {
               <Users size={48} className="cta-icon" />
             </div>
             <h3 className={`cta-title ${language === 'ta' ? 'tamil-text' : ''}`}>
-              {language === 'ta' 
-                ? 'இந்த தலைமையுடன் இணையுங்கள்' 
+              {language === 'ta'
+                ? 'இந்த தலைமையுடன் இணையுங்கள்'
                 : 'Join This Leadership'}
             </h3>
             <p className={`cta-subtitle ${language === 'ta' ? 'tamil-text' : ''}`}>
@@ -623,7 +580,7 @@ const Leadership = () => {
       </section>
 
       {/* Footer */}
-      <Footer 
+      <Footer
         language={language}
         setLanguage={handleLanguageChange}
         t={t}

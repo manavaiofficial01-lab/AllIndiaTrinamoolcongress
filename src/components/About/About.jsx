@@ -3,14 +3,14 @@ import { useLocation } from 'react-router-dom';
 import './About.css';
 import Footer from '../Home/Footer';
 import Navbar from '../Home/Navbar';
-import { 
-  Sprout, 
-  Flag, 
-  TrendingUp, 
-  Globe, 
+import {
+  Sprout,
+  Flag,
+  TrendingUp,
+  Globe,
   Users,
-  Heart, 
-  Handshake, 
+  Heart,
+  Handshake,
   Sparkles,
   Scale,
   Target,
@@ -42,18 +42,18 @@ const About = () => {
   const location = useLocation();
   const animationRef = useRef({});
   const observerRef = useRef(null);
-  
+
   // Load language from localStorage or default to 'en'
   const [language, setLanguage] = useState(() => {
     const savedLanguage = localStorage.getItem('tmc-tn-language');
     return savedLanguage || 'en';
   });
-  
+
   // Save language to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('tmc-tn-language', language);
   }, [language]);
-  
+
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo({
@@ -61,7 +61,7 @@ const About = () => {
       behavior: 'smooth'
     });
   }, []);
-  
+
   // Handle scroll events
   useEffect(() => {
     const handleScroll = () => {
@@ -70,7 +70,7 @@ const About = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
+
   // Content for About page
   const aboutContent = {
     en: {
@@ -286,7 +286,7 @@ const About = () => {
   };
 
   const t = aboutContent[language];
-  
+
   const stats = {
     yearsActive: 26,
     statesPresence: 8,
@@ -296,45 +296,53 @@ const About = () => {
 
   // Generate timeline events based on language
   const timelineEvents = [
-    { year: 1998, 
-      title: language === 'ta' ? 'அடித்தளம்' : 'Foundation', 
-      desc: language === 'ta' ? 'மம்தா பானர்ஜியால் கட்சி நிறுவப்பட்டது' : 'Party founded by Mamata Banerjee', 
-      category: 'founding' 
+    {
+      year: 1998,
+      title: language === 'ta' ? 'அடித்தளம்' : 'Foundation',
+      desc: language === 'ta' ? 'மம்தா பானர்ஜியால் கட்சி நிறுவப்பட்டது' : 'Party founded by Mamata Banerjee',
+      category: 'founding'
     },
-    { year: 2001, 
-      title: language === 'ta' ? 'முக்கிய எதிர்க்கட்சி' : 'Main Opposition', 
-      desc: language === 'ta' ? 'வங்க சட்டமன்றத்தில் 60 இருக்கைகள்' : '60 seats in Bengal assembly', 
-      category: 'struggles' 
+    {
+      year: 2001,
+      title: language === 'ta' ? 'முக்கிய எதிர்க்கட்சி' : 'Main Opposition',
+      desc: language === 'ta' ? 'வங்க சட்டமன்றத்தில் 60 இருக்கைகள்' : '60 seats in Bengal assembly',
+      category: 'struggles'
     },
-    { year: 2009, 
-      title: language === 'ta' ? 'லோக்சபா முன்னேற்றம்' : 'Lok Sabha Breakthrough', 
-      desc: language === 'ta' ? 'நாடாளுமன்றத்தில் 19 இருக்கைகள்' : '19 seats in Parliament', 
-      category: 'rise' 
+    {
+      year: 2009,
+      title: language === 'ta' ? 'லோக்சபா முன்னேற்றம்' : 'Lok Sabha Breakthrough',
+      desc: language === 'ta' ? 'நாடாளுமன்றத்தில் 19 இருக்கைகள்' : '19 seats in Parliament',
+      category: 'rise'
     },
-    { year: 2011, 
-      title: language === 'ta' ? 'வரலாற்று வெற்றி' : 'Historic Victory', 
-      desc: language === 'ta' ? '34-ஆண்டு இடது ஆட்சியை முடிவுக்கு கொண்டுவந்தது' : 'Ended 34-year Left rule', 
-      category: 'rise' 
+    {
+      year: 2011,
+      title: language === 'ta' ? 'வரலாற்று வெற்றி' : 'Historic Victory',
+      desc: language === 'ta' ? '34-ஆண்டு இடது ஆட்சியை முடிவுக்கு கொண்டுவந்தது' : 'Ended 34-year Left rule',
+      category: 'rise'
     },
-    { year: 2014, 
-      title: language === 'ta' ? 'ஆதிக்க செயல்திறன்' : 'Dominant Performance', 
-      desc: language === 'ta' ? 'வங்கத்தில் 42-ல் 34 இருக்கைகள்' : '34 of 42 seats in Bengal', 
-      category: 'rise' 
+    {
+      year: 2014,
+      title: language === 'ta' ? 'ஆதிக்க செயல்திறன்' : 'Dominant Performance',
+      desc: language === 'ta' ? 'வங்கத்தில் 42-ல் 34 இருக்கைகள்' : '34 of 42 seats in Bengal',
+      category: 'rise'
     },
-    { year: 2016, 
-      title: language === 'ta' ? 'சட்டமன்ற பெரும்பானமை' : 'Assembly Supermajority', 
-      desc: language === 'ta' ? 'வங்கத்தில் 211 இருக்கைகள்' : '211 seats in Bengal', 
-      category: 'rise' 
+    {
+      year: 2016,
+      title: language === 'ta' ? 'சட்டமன்ற பெரும்பானமை' : 'Assembly Supermajority',
+      desc: language === 'ta' ? 'வங்கத்தில் 211 இருக்கைகள்' : '211 seats in Bengal',
+      category: 'rise'
     },
-    { year: 2021, 
-      title: language === 'ta' ? 'சாதனை வெற்றி' : 'Record Win', 
-      desc: language === 'ta' ? 'சட்டமன்றத்தில் 215 இருக்கைகள்' : '215 seats in Assembly', 
-      category: 'rise' 
+    {
+      year: 2021,
+      title: language === 'ta' ? 'சாதனை வெற்றி' : 'Record Win',
+      desc: language === 'ta' ? 'சட்டமன்றத்தில் 215 இருக்கைகள்' : '215 seats in Assembly',
+      category: 'rise'
     },
-    { year: 2024, 
-      title: language === 'ta' ? 'லோக்சபா வெற்றி' : 'Lok Sabha Success', 
-      desc: language === 'ta' ? 'நாடாளுமன்றத்தில் 29 இருக்கைகள்' : '29 seats in Parliament', 
-      category: 'expansion' 
+    {
+      year: 2024,
+      title: language === 'ta' ? 'லோக்சபா வெற்றி' : 'Lok Sabha Success',
+      desc: language === 'ta' ? 'நாடாளுமன்றத்தில் 29 இருக்கைகள்' : '29 seats in Parliament',
+      category: 'expansion'
     }
   ];
 
@@ -348,7 +356,7 @@ const About = () => {
       electionsWon: 0,
       milestones: 0
     });
-    
+
     // Clean up any existing animations
     Object.keys(animationRef.current).forEach(key => {
       if (animationRef.current[key]) {
@@ -356,38 +364,38 @@ const About = () => {
       }
     });
     animationRef.current = {};
-    
+
     // Disconnect existing observer
     if (observerRef.current) {
       observerRef.current.disconnect();
       observerRef.current = null;
     }
-    
+
     // Set up new observer
     const setupObserver = () => {
       if (!aboutRef.current) return;
-      
+
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach(entry => {
-            if (entry.isIntersecting && !animateStats) {
+            if (entry.isIntersecting) {
               setAnimateStats(true);
             }
           });
         },
-        { 
+        {
           threshold: 0.2,
           rootMargin: '100px'
         }
       );
-      
+
       observer.observe(aboutRef.current);
       observerRef.current = observer;
     };
-    
+
     // Small delay to ensure DOM is ready
     const timer = setTimeout(setupObserver, 100);
-    
+
     return () => {
       clearTimeout(timer);
       if (observerRef.current) {
@@ -407,21 +415,21 @@ const About = () => {
     if (animateStats) {
       const animateCounter = (key, startValue, endValue, duration) => {
         let startTime = null;
-        
+
         const animate = (timestamp) => {
           if (!startTime) startTime = timestamp;
           const elapsed = timestamp - startTime;
           const progress = Math.min(elapsed / duration, 1);
-          
+
           // Easing function for smooth animation
           const easeOutQuart = 1 - Math.pow(1 - progress, 4);
           const currentValue = Math.floor(startValue + (endValue - startValue) * easeOutQuart);
-          
-          setCountedStats(prev => ({ 
-            ...prev, 
-            [key]: currentValue 
+
+          setCountedStats(prev => ({
+            ...prev,
+            [key]: currentValue
           }));
-          
+
           if (progress < 1) {
             animationRef.current[key] = requestAnimationFrame(animate);
           } else {
@@ -429,10 +437,10 @@ const About = () => {
             setCountedStats(prev => ({ ...prev, [key]: endValue }));
           }
         };
-        
+
         animationRef.current[key] = requestAnimationFrame(animate);
       };
-      
+
       // Animate each stat with staggered delays
       Object.keys(stats).forEach((key, index) => {
         const delay = index * 300; // Stagger the animations
@@ -449,7 +457,7 @@ const About = () => {
         milestones: 0
       });
     }
-    
+
     return () => {
       // Clean up all animation frames
       Object.keys(animationRef.current).forEach(key => {
@@ -467,7 +475,7 @@ const About = () => {
 
   // Function to get icon component
   const getIconComponent = (iconName, size = 24) => {
-    switch(iconName) {
+    switch (iconName) {
       case 'foundation':
         return <Sprout size={size} />;
       case 'struggles':
@@ -493,14 +501,14 @@ const About = () => {
     }
   };
 
-  const filteredTimeline = timelineEvents.filter(event => 
+  const filteredTimeline = timelineEvents.filter(event =>
     activeTimeline === 'all' || event.category === activeTimeline
   );
 
   return (
     <>
       <div className="about-container">
-        <Navbar 
+        <Navbar
           scrolled={scrolled}
           language={language}
           setLanguage={handleLanguageChange}
@@ -508,28 +516,28 @@ const About = () => {
           setMobileMenuOpen={setMobileMenuOpen}
           t={t}
         />
+        <section className="about-hero">
+          <div className="about-hero-content">
+            <div className="about-hero-decoration">
+              <div className="about-hero-tricolor-line"></div>
+            </div>
+            <h1 className={`about-hero-title ${language === 'ta' ? 'about-tamil-text' : ''}`}>
+              {t.title}
+            </h1>
+            <p className={`about-hero-subtitle ${language === 'ta' ? 'about-tamil-text' : ''}`}>
+              {t.subtitle}
+            </p>
+            <div className="about-hero-description">
+              <p className={`${language === 'ta' ? 'about-tamil-text' : ''}`}>
+                {t.intro}
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section className="about-section" ref={aboutRef}>
           <div className="about-content">
-            {/* Header */}
-            <div className="about-header">
-              <div className="about-header-decoration">
-                <div className="about-tricolor-line"></div>
-              </div>
-              <h2 className={`about-title ${language === 'ta' ? 'about-tamil-text' : ''}`}>
-                {t.title}
-              </h2>
-              <p className={`about-subtitle ${language === 'ta' ? 'about-tamil-text' : ''}`}>
-                {t.subtitle}
-              </p>
-              <div className="about-intro-box">
-                <div className="about-intro-icon">
-                  <BookOpen size={32} />
-                </div>
-                <p className={`about-intro-text ${language === 'ta' ? 'about-tamil-text' : ''}`}>
-                  {t.intro}
-                </p>
-              </div>
-            </div>
+            {/* Header removed */}
 
             {/* Stats Grid */}
             <div className="about-stats-grid">
@@ -640,8 +648,8 @@ const About = () => {
                 <div className="about-details-card">
                   <div className="about-details-header">
                     <div className="about-details-icon">
-                      {activeTimeline === 'all' ? 
-                        <BookOpen size={28} /> : 
+                      {activeTimeline === 'all' ?
+                        <BookOpen size={28} /> :
                         getIconComponent(t.sections[activeTimeline]?.icon, 28)
                       }
                     </div>
@@ -704,9 +712,9 @@ const About = () => {
                 <div className="about-symbol-visual">
                   <div className="about-symbol-wrapper">
                     <div className="about-symbol-logo-container">
-                      <img 
-                        src="/logo.png" 
-                        alt="AITC Party Symbol" 
+                      <img
+                        src="/logo.png"
+                        alt="AITC Party Symbol"
                         className="about-party-logo"
                         onError={(e) => {
                           e.target.onerror = null;
@@ -750,7 +758,7 @@ const About = () => {
             </div>
           </div>
         </section>
-        <Footer 
+        <Footer
           language={language}
           setLanguage={handleLanguageChange}
           t={t}

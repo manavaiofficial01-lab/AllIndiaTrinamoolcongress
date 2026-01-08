@@ -18,7 +18,10 @@ body {
   color: #111827;
 }
 
-input, select, button, textarea {
+input,
+select,
+button,
+textarea {
   font-family: inherit;
 }
 
@@ -242,19 +245,19 @@ input, select, button, textarea {
   .mobile-menu-button {
     display: flex;
   }
-  
+
   .nav-container {
     padding: 0 16px;
   }
-  
+
   .logo-image-wrapper {
     width: 180px;
   }
-  
+
   .logo-image {
     max-height: 40px;
   }
-  
+
   .nav-content {
     height: 60px;
   }
@@ -310,6 +313,7 @@ input, select, button, textarea {
   from {
     right: -100%;
   }
+
   to {
     right: 0;
   }
@@ -547,12 +551,10 @@ input, select, button, textarea {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.85) 0%,
-    rgba(0, 0, 0, 0.65) 50%,
-    rgba(0, 0, 0, 0.45) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.65) 50%,
+      rgba(0, 0, 0, 0.45) 100%);
   z-index: 1;
 }
 
@@ -639,9 +641,17 @@ input, select, button, textarea {
   text-align: center;
   max-width: 896px;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 40px 30px;
   position: relative;
   z-index: 2;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
 .hero-title {
@@ -652,7 +662,7 @@ input, select, button, textarea {
   line-height: 1.2;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9), 0 0 15px rgba(0, 0, 0, 0.5);
   letter-spacing: 0.5px;
-  animation: fadeInUp 1s ease;
+  animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .hero-title.tamil-text {
@@ -742,10 +752,12 @@ input, select, button, textarea {
     transform: scale(0, 0);
     opacity: 0.5;
   }
+
   20% {
     transform: scale(25, 25);
     opacity: 0.3;
   }
+
   100% {
     opacity: 0;
     transform: scale(40, 40);
@@ -798,14 +810,7 @@ input, select, button, textarea {
   gap: 15px;
 }
 
-.stat-card {
-  text-align: center;
-  padding: 20px 15px;
-  border-radius: 10px;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-  border: 2px solid var(--gray-light);
-  background: linear-gradient(135deg, var(--white) 0%, var(--gray-light) 100%);
-}
+
 
 .stat-card:hover {
   transform: translateY(-5px) scale(1.02);
@@ -1019,6 +1024,40 @@ input, select, button, textarea {
   gap: 25px;
 }
 
+.stat-card {
+  background-color: var(--white);
+  padding: 20px 15px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--saffron), var(--white), var(--green));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(19, 136, 8, 0.15);
+  border-color: rgba(19, 136, 8, 0.2);
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+}
+
 .leader-card {
   background-color: var(--white);
   border-radius: 10px;
@@ -1135,6 +1174,7 @@ input, select, button, textarea {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1146,6 +1186,7 @@ input, select, button, textarea {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -2120,12 +2161,12 @@ input, select, button, textarea {
   .nav-links {
     gap: 1px;
   }
-  
+
   .nav-link {
     padding: 0 12px;
     font-size: 13.5px;
   }
-  
+
   .nav-link.tamil-text {
     padding: 0 10px;
     font-size: 13px;
@@ -2137,61 +2178,61 @@ input, select, button, textarea {
   .nav-links {
     display: none;
   }
-  
+
   .nav-container {
     padding: 0 16px;
   }
-  
+
   .logo-image-wrapper {
     width: 180px;
   }
-  
+
   .logo-image {
     max-height: 40px;
   }
-  
+
   .nav-content {
     height: 60px;
   }
-  
+
   .mobile-menu-panel {
     width: 280px;
   }
-  
+
   .mobile-menu-panel.tamil-menu {
     width: 300px;
   }
-  
+
   .hero {
     padding-top: 100px;
     padding-bottom: 40px;
     min-height: 85vh;
   }
-  
+
   .hero-title {
     font-size: 32px;
     margin-bottom: 15px;
   }
-  
+
   .hero-title.tamil-text {
     font-size: 30px;
   }
-  
+
   .hero-subtitle {
     font-size: 18px;
     margin-bottom: 25px;
   }
-  
+
   .hero-subtitle.tamil-text {
     font-size: 17px;
   }
-  
+
   .hero-buttons {
     flex-direction: column;
     align-items: center;
     gap: 12px;
   }
-  
+
   .primary-button,
   .secondary-button {
     width: 100%;
@@ -2200,13 +2241,13 @@ input, select, button, textarea {
     font-size: 15px;
     min-width: auto;
   }
-  
+
   .primary-button.tamil-text,
   .secondary-button.tamil-text {
     font-size: 14px;
     padding: 12px 22px;
   }
-  
+
   .section-title {
     font-size: 26px;
     margin-bottom: 10px;
@@ -2220,30 +2261,30 @@ input, select, button, textarea {
     font-size: 15px;
     margin-bottom: 30px;
   }
-  
+
   .section-subtitle.tamil-text {
     font-size: 14px;
   }
-  
+
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
-  
+
   .stat-card {
     padding: 18px 12px;
   }
-  
+
   .about-grid {
     grid-template-columns: 1fr;
     gap: 25px;
   }
-  
+
   .values-grid {
     grid-template-columns: 1fr;
     gap: 12px;
   }
-  
+
   .leader-grid,
   .vision-grid,
   .initiatives-grid,
@@ -2251,78 +2292,78 @@ input, select, button, textarea {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .form-row {
     grid-template-columns: 1fr;
     gap: 15px;
   }
-  
+
   .form-card {
     padding: 25px 20px;
   }
-  
+
   .radio-group {
     flex-direction: column;
     gap: 12px;
   }
-  
+
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
   }
-  
+
   .newsletter-form {
     flex-direction: column;
   }
-  
+
   .newsletter-input {
     width: 100%;
     border-bottom: 1px solid var(--saffron);
   }
-  
+
   .carousel-prev,
   .carousel-next {
     width: 36px;
     height: 36px;
     font-size: 18px;
   }
-  
+
   .carousel-prev {
     left: 8px;
   }
-  
+
   .carousel-next {
     right: 8px;
   }
-  
+
   .carousel-indicators {
     bottom: 15px;
   }
-  
+
   .carousel-indicator {
     width: 8px;
     height: 8px;
   }
-  
+
   .mobile-menu-link {
     padding: 14px 18px;
     font-size: 13px;
   }
-  
+
   .mobile-menu-link.tamil-text {
     font-size: 14px;
     padding: 13px 16px;
   }
-  
+
   .join-cta-title {
     font-size: 1.8rem;
   }
-  
+
   .join-cta-subtitle {
     font-size: 0.95rem;
   }
@@ -2332,102 +2373,102 @@ input, select, button, textarea {
   .nav-container {
     padding: 0 12px;
   }
-  
+
   .nav-content {
     height: 55px;
   }
-  
+
   .logo-image-wrapper {
     width: 160px;
   }
-  
+
   .logo-image {
     max-height: 35px;
   }
-  
+
   .hero {
     min-height: 80vh;
     padding-top: 90px;
   }
-  
+
   .hero-title {
     font-size: 28px;
   }
-  
+
   .hero-title.tamil-text {
     font-size: 26px;
   }
-  
+
   .hero-subtitle {
     font-size: 16px;
   }
-  
+
   .hero-subtitle.tamil-text {
     font-size: 15px;
   }
-  
+
   .mobile-menu-panel {
     width: 260px;
   }
-  
+
   .mobile-menu-panel.tamil-menu {
     width: 280px;
   }
-  
+
   .stats-grid {
     grid-template-columns: 1fr;
     gap: 10px;
   }
-  
+
   .footer-grid {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 20px;
   }
-  
+
   .footer-logo {
     justify-content: center;
   }
-  
+
   .footer-text.tamil-text {
     text-align: center;
     direction: ltr;
   }
-  
+
   .join-cta-card {
     padding: 30px 20px;
   }
-  
+
   .join-cta-title {
     font-size: 1.6rem;
   }
-  
+
   .join-cta-subtitle {
     font-size: 0.9rem;
   }
-  
+
   .hero-buttons .primary-button,
   .hero-buttons .secondary-button {
     padding: 11px 20px;
     font-size: 14px;
   }
-  
+
   .form-card {
     padding: 20px 15px;
   }
-  
+
   .contact-icon {
     width: 55px;
     height: 55px;
     font-size: 28px;
   }
-  
+
   .pillar-icon {
     width: 42px;
     height: 42px;
     font-size: 22px;
   }
-  
+
   .leader-image {
     height: 160px;
     font-size: 48px;
@@ -2438,42 +2479,42 @@ input, select, button, textarea {
   .nav-container {
     padding: 0 10px;
   }
-  
+
   .nav-content {
     height: 50px;
   }
-  
+
   .logo-image-wrapper {
     width: 140px;
   }
-  
+
   .logo-image {
     max-height: 30px;
   }
-  
+
   .hero {
     min-height: 75vh;
     padding-top: 80px;
   }
-  
+
   .hero-title {
     font-size: 24px;
     margin-bottom: 12px;
   }
-  
+
   .hero-title.tamil-text {
     font-size: 22px;
   }
-  
+
   .hero-subtitle {
     font-size: 14px;
     margin-bottom: 20px;
   }
-  
+
   .hero-subtitle.tamil-text {
     font-size: 13px;
   }
-  
+
   .primary-button,
   .secondary-button {
     padding: 10px 18px;
@@ -2481,41 +2522,41 @@ input, select, button, textarea {
     min-width: auto;
     width: 90%;
   }
-  
+
   .primary-button.tamil-text,
   .secondary-button.tamil-text {
     font-size: 12px;
     padding: 10px 16px;
   }
-  
+
   .mobile-menu-button {
     width: 34px;
     height: 34px;
     font-size: 20px;
   }
-  
+
   .mobile-menu-panel {
     width: 85%;
     max-width: 260px;
   }
-  
+
   .mobile-menu-panel.tamil-menu {
     width: 90%;
     max-width: 280px;
   }
-  
+
   .mobile-menu-link {
     padding: 12px 15px;
     font-size: 12px;
     min-height: 45px;
   }
-  
+
   .mobile-menu-link.tamil-text {
     font-size: 13px;
     padding: 12px 15px;
     min-height: 45px;
   }
-  
+
   .scroll-top {
     width: 40px;
     height: 40px;
@@ -2530,11 +2571,11 @@ input, select, button, textarea {
     height: 30px;
     font-size: 16px;
   }
-  
+
   .carousel-indicators {
     bottom: 10px;
   }
-  
+
   .carousel-indicator {
     width: 6px;
     height: 6px;
@@ -2547,7 +2588,7 @@ input, select, button, textarea {
   .section-title {
     font-size: 22px;
   }
-  
+
   .section-title.tamil-text {
     font-size: 20px;
   }
@@ -2555,23 +2596,23 @@ input, select, button, textarea {
   .section-subtitle {
     font-size: 13px;
   }
-  
+
   .section-subtitle.tamil-text {
     font-size: 12px;
   }
-  
+
   .stat-card {
     padding: 15px 10px;
   }
-  
+
   .stat-number {
     font-size: 24px;
   }
-  
+
   .stat-label {
     font-size: 11px;
   }
-  
+
   /* Tamil text alignment for mobile */
   .about-text.tamil-text,
   .value-desc.tamil-text,
@@ -2584,45 +2625,45 @@ input, select, button, textarea {
     direction: ltr;
     font-size: 12px;
   }
-  
+
   .pillar-goal .tamil-text {
     text-align: left;
     direction: ltr;
     font-size: 11px;
   }
-  
+
   .join-cta-card {
     padding: 25px 15px;
   }
-  
+
   .join-cta-title {
     font-size: 1.4rem;
   }
-  
+
   .join-cta-subtitle {
     font-size: 0.85rem;
   }
-  
+
   .large-button {
     padding: 10px 25px !important;
     font-size: 0.9rem !important;
   }
-  
+
   .contact-icon {
     width: 50px;
     height: 50px;
     font-size: 24px;
   }
-  
+
   .leader-image {
     height: 140px;
     font-size: 40px;
   }
-  
+
   .read-more-link {
     font-size: 12px;
   }
-  
+
   .view-all-button {
     padding: 8px 20px;
     font-size: 12px;
@@ -2633,6 +2674,7 @@ input, select, button, textarea {
    ACCESSIBILITY IMPROVEMENTS
    ======================================== */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -2656,11 +2698,11 @@ select:focus-visible {
   .hero-carousel {
     opacity: 0.8;
   }
-  
+
   .carousel-overlay {
     background: rgba(0, 0, 0, 0.9);
   }
-  
+
   .hero-title,
   .hero-subtitle {
     text-shadow: 2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black;
@@ -2669,6 +2711,7 @@ select:focus-visible {
 
 /* Print styles */
 @media print {
+
   .nav,
   .mobile-menu-button,
   .mobile-menu-panel,
@@ -2682,32 +2725,32 @@ select:focus-visible {
   .newsletter-form {
     display: none !important;
   }
-  
+
   .hero {
     padding-top: 20px;
     min-height: auto;
     background: white !important;
   }
-  
+
   .hero-content {
     color: black !important;
   }
-  
+
   .hero-title,
   .hero-subtitle {
     color: black !important;
     text-shadow: none !important;
   }
-  
+
   body {
     background: white;
     color: black;
   }
-  
+
   .section-title {
     page-break-after: avoid;
   }
-  
+
   .leader-card,
   .pillar-card,
   .news-card {
@@ -2715,12 +2758,12 @@ select:focus-visible {
     box-shadow: none;
     border: 1px solid #ddd;
   }
-  
+
   .join-cta-section {
     background: white !important;
     color: black !important;
   }
-  
+
   .join-cta-card {
     background: white !important;
     border: 1px solid #ddd !important;

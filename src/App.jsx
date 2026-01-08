@@ -7,6 +7,13 @@ import Vision from "./components/Vision/Vision"
 import Initiatives from './components/Initiatives/Initiatives'
 import News from './components/News/News'
 import Contact from './components/Contact/Contact'
+
+
+import Join from './components/Join/Join'
+import Migration from './components/Migration'
+import AdminLogin from './components/Admin/AdminLogin'
+import AdminDashboard from './components/Admin/AdminDashboard'
+
 const App = () => {
   return (
     <>
@@ -17,24 +24,34 @@ const App = () => {
         <Route path='/about' element={<>
           <About />
         </>} />
-         <Route path='/leadership' element={<>
+        <Route path='/leadership' element={<>
           <Leadership />
         </>} />
-         <Route path='/vision' element={<>
+        <Route path='/vision' element={<>
           <Vision />
         </>} />
         <Route path='/initiatives' element={<>
           <Initiatives />
         </>} />
-            <Route path='/news' element={<>
+
+        <Route path='/news' element={<>
           <News />
         </>} />
 
-         <Route path='/contact' element={<>
+        <Route path='/join' element={<>
+          <Join />
+        </>} />
+
+        <Route path='/contact' element={<>
           <Contact />
         </>} />
-        
-        
+
+
+        <Route path='/migrate' element={<Migration />} />
+
+        <Route path='/admin/login' element={<AdminLogin />} />
+        <Route path='/admin' element={<AdminDashboard />} />
+
       </Routes>
     </>
 
