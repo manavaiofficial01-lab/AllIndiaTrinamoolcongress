@@ -351,27 +351,83 @@
     }
 }
 
-/* Print Styles */
+/* Robust Print Optimization */
 @media print {
-    .no-print {
+
+    /* Set page padding/margins to zero to allow absolute positioning of card if needed */
+    @page {
+        size: landscape;
+        margin: 0;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Hide everything except the modal and card */
+    body>*:not(.id-card-modal) {
         display: none !important;
     }
 
-    body * {
-        visibility: hidden;
+    .id-card-modal {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        backdrop-filter: none !important;
     }
 
-    #member-id-card,
-    #member-id-card * {
-        visibility: visible;
+    .id-card-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
     }
 
-    #member-id-card {
-        position: absolute;
-        left: 0;
-        top: 0;
+    .no-print,
+    .card-actions,
+    .btn-download,
+    .btn-close {
+        display: none !important;
+    }
+
+    /* FORCE COLORS & GRADIENTS */
+    .tmc-id-card {
         transform: scale(1) !important;
-        /* Always print at full size */
+        box-shadow: none !important;
+        border: none !important;
+        position: relative !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
+    .card-banner,
+    .membership-label-badge,
+    .card-flag-footer {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .card-watermark {
+        color: rgba(19, 136, 8, 0.05) !important;
+        /* Slightly darker for print visibility */
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Ensure images print */
+    img {
+        max-width: 100% !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
     }
 }
 
