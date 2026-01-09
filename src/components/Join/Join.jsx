@@ -5,6 +5,7 @@ import Footer from '../Home/Footer'; // Reusing Footer
 import { content } from '../../data/content'; // Importing shared content
 import './Join.css';
 import { Check, UserPlus, Heart, Users, MapPin, Mail, Phone } from 'lucide-react';
+import { supabase } from '../../../supabase';
 
 const Join = () => {
     const [language, setLanguage] = useState(() => {
@@ -15,6 +16,7 @@ const Join = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const [errorMsg, setErrorMsg] = useState(null);
 
     const [formData, setFormData] = useState({
         firstName: '',
@@ -22,10 +24,8 @@ const Join = () => {
         email: '',
         phone: '',
         district: '',
-
         address: '',
-        membershipType: 'volunteer',
-        message: ''
+        membershipType: 'volunteer'
     });
 
     const t = content[language];
@@ -60,13 +60,48 @@ const Join = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setErrorMsg(null);
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        try {
+            const { error } = await supabase
+                .from('membership_requests')
+                .insert([
+                    {
+                        first_name: formData.firstName,
+                        last_name: formData.lastName,
+                        email: formData.email,
+                        phone: formData.phone,
+                        district: formData.district,
+                        address: formData.address,
+                        membership_type: formData.membershipType
+                    }
+                ]);
 
-        setIsSuccess(true);
-        setIsSubmitting(false);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (error) throw error;
+
+            // WhatsApp Integration
+            const tmcPhone = '+917448498888';
+            const whatsappMessage = `*New TMC Membership Registration from Website*
+    
+*Name:* ${formData.firstName} ${formData.lastName}
+*Email:* ${formData.email}
+*Phone:* ${formData.phone}
+*District:* ${formData.district}
+*Membership:* ${formData.membershipType}
+*Address:* ${formData.address || 'N/A'}`;
+
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappUrl = `https://wa.me/${tmcPhone.replace(/[^0-9]/g, '')}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+
+            setIsSuccess(true);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (err) {
+            console.error('Submission error:', err);
+            setErrorMsg(language === 'ta' ? 'பதிவு செய்வதில் பிழை ஏற்பட்டது. மீண்டும் முயற்சிக்கவும்.' : 'Failed to submit. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const districts = [
@@ -145,11 +180,11 @@ const Join = () => {
                         </h3>
                         <div style={{ display: 'flex', gap: '10px', marginBottom: '15px', alignItems: 'center' }}>
                             <Mail size={20} color="#138808" />
-                            <span>info@tmctamilnadu.org</span>
+                            <span>vettritmctn@gmail.com</span>
                         </div>
                         <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                             <Phone size={20} color="#138808" />
-                            <span>+91 44 1234 5678</span>
+                            <span>+91 744 849 8888</span>
                         </div>
                     </div>
                 </div>
@@ -177,7 +212,7 @@ const Join = () => {
                                     setFormData({
                                         firstName: '', lastName: '', email: '', phone: '',
                                         district: '', address: '',
-                                        membershipType: 'volunteer', message: ''
+                                        membershipType: 'volunteer'
                                     });
                                 }}
                             >
@@ -194,6 +229,12 @@ const Join = () => {
                                     {language === 'ta' ? 'கீழுள்ள படிவத்தை பூர்த்தி செய்யவும்' : 'Please fill out the form below'}
                                 </p>
                             </div>
+
+                            {errorMsg && (
+                                <div style={{ color: '#dc2626', backgroundColor: '#fef2f2', padding: '12px', borderRadius: '8px', marginBottom: '20px', border: '1px solid #fee2e2' }}>
+                                    {errorMsg}
+                                </div>
+                            )}
 
                             <form onSubmit={handleSubmit}>
                                 <div className="form-grid">

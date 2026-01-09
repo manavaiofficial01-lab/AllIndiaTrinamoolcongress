@@ -162,8 +162,8 @@ export const content = {
             subtitle: 'உங்கள் கருத்துக்கள், பரிந்துரைகள் மற்றும் ஆதரவு எங்களுக்கு மிகவும் மதிப்புமிக்கவை',
             address: 'தலைமை அலுவலகம்',
             addressLine: 'அண்ணா சாலை, சென்னை - 600002, தமிழ்நாடு',
-            phone: '+91 44 1234 5678',
-            email: 'info@tmctamilnadu.org',
+            phone: '+91 744 849 8888',
+            email: 'vettritmctn@gmail.com',
             hours: 'திங்கள் - சனி, காலை 9 - மாலை 6'
         }
     },
@@ -330,8 +330,8 @@ export const content = {
             subtitle: 'Your feedback, suggestions, and support are very valuable to us',
             address: 'Head Office',
             addressLine: 'Anna Salai, Chennai - 600002, Tamil Nadu',
-            phone: '+91 44 1234 5678',
-            email: 'info@tmctamilnadu.org',
+            phone: '+91 744 849 8888',
+            email: 'vettritmctn@gmail.com',
             hours: 'Monday - Saturday, 9 AM - 6 PM'
         }
     }

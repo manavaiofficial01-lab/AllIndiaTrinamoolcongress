@@ -130,7 +130,13 @@ const ManageNews = () => {
                 event_date: formData.event_date,
                 date_str: formattedDateStr,
                 image_urls: newImageUrls,
-                // Removed image_url, title, description, lang legacy columns to prevent schema errors
+
+                // Set lang to 'both' to satisfy DB constraint and mark as bilingual
+                lang: 'both',
+
+                // Fallbacks for legacy columns to satisfy any NOT NULL constraints
+                title: formData.title_en || formData.title_ta || '',
+                description: formData.description_en || formData.description_ta || '',
 
                 // New Fields
                 title_en: formData.title_en,

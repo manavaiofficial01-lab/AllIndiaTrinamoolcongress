@@ -516,32 +516,31 @@ const About = () => {
           setMobileMenuOpen={setMobileMenuOpen}
           t={t}
         />
+
         <section className="about-hero">
-          <div className="about-hero-content">
-            <div className="about-hero-decoration">
+          <div className="content-wrapper">
+            <div className="about-hero-content">
               <div className="about-hero-tricolor-line"></div>
-            </div>
-            <h1 className={`about-hero-title ${language === 'ta' ? 'about-tamil-text' : ''}`}>
-              {t.title}
-            </h1>
-            <p className={`about-hero-subtitle ${language === 'ta' ? 'about-tamil-text' : ''}`}>
-              {t.subtitle}
-            </p>
-            <div className="about-hero-description">
-              <p className={`${language === 'ta' ? 'about-tamil-text' : ''}`}>
-                {t.intro}
+              <h1 className={`about-hero-title ${language === 'ta' ? 'about-tamil-text' : ''}`}>
+                {t.title}
+              </h1>
+              <p className={`about-hero-subtitle ${language === 'ta' ? 'about-tamil-text' : ''}`}>
+                {t.subtitle}
               </p>
+              <div className="about-hero-description">
+                <p className={`${language === 'ta' ? 'about-tamil-text' : ''}`}>
+                  {t.intro}
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
         <section className="about-section" ref={aboutRef}>
-          <div className="about-content">
-            {/* Header removed */}
-
+          <div className="content-wrapper">
             {/* Stats Grid */}
             <div className="about-stats-grid">
-              <div className="about-stat-card" style={{ animationDelay: '0.1s' }}>
+              <div className="about-stat-card">
                 <div className="about-stat-number">
                   {countedStats.yearsActive}+
                 </div>
@@ -549,7 +548,7 @@ const About = () => {
                   {t.stats.yearsActive}
                 </div>
               </div>
-              <div className="about-stat-card" style={{ animationDelay: '0.2s' }}>
+              <div className="about-stat-card">
                 <div className="about-stat-number">
                   {countedStats.statesPresence}+
                 </div>
@@ -557,7 +556,7 @@ const About = () => {
                   {t.stats.statesPresence}
                 </div>
               </div>
-              <div className="about-stat-card" style={{ animationDelay: '0.3s' }}>
+              <div className="about-stat-card">
                 <div className="about-stat-number">
                   {countedStats.electionsWon}+
                 </div>
@@ -565,7 +564,7 @@ const About = () => {
                   {t.stats.electionsWon}
                 </div>
               </div>
-              <div className="about-stat-card" style={{ animationDelay: '0.4s' }}>
+              <div className="about-stat-card">
                 <div className="about-stat-number">
                   {countedStats.milestones}+
                 </div>
@@ -575,24 +574,20 @@ const About = () => {
               </div>
             </div>
 
-            {/* Main Content */}
+            {/* Main Content Grid */}
             <div className="about-main-grid">
-              {/* Timeline Navigation */}
-              <div className="about-timeline-nav">
+              {/* Sidebar Nav */}
+              <aside className="about-timeline-nav">
                 <div className="about-nav-card">
-                  <div className="about-nav-title-wrapper">
-                    <h3 className={`about-nav-title ${language === 'ta' ? 'about-tamil-text' : ''}`}>
-                      {language === 'ta' ? 'காலக்கோடு பயணம்' : 'Timeline Journey'}
-                    </h3>
-                  </div>
+                  <h3 className={`about-nav-title ${language === 'ta' ? 'about-tamil-text' : ''}`}>
+                    {language === 'ta' ? 'பயணத் தேடல்' : 'Explore Journey'}
+                  </h3>
                   <div className="about-nav-buttons">
                     <button
                       onClick={() => setActiveTimeline('all')}
                       className={`about-nav-button ${activeTimeline === 'all' ? 'active-all' : ''} ${language === 'ta' ? 'about-tamil-text' : ''}`}
                     >
-                      <span className="about-nav-icon">
-                        <BookOpen size={20} />
-                      </span>
+                      <span className="about-nav-icon"><BookOpen size={20} /></span>
                       {t.fullTimeline}
                     </button>
                     {Object.entries(t.sections).map(([key, section]) => (
@@ -601,17 +596,15 @@ const About = () => {
                         onClick={() => setActiveTimeline(key)}
                         className={`about-nav-button ${activeTimeline === key ? 'active-section' : ''} ${language === 'ta' ? 'about-tamil-text' : ''}`}
                       >
-                        <span className="about-nav-icon">
-                          {getIconComponent(section.icon, 20)}
-                        </span>
+                        <span className="about-nav-icon">{getIconComponent(section.icon, 20)}</span>
                         {section.title}
                       </button>
                     ))}
                   </div>
                 </div>
-              </div>
+              </aside>
 
-              {/* Timeline */}
+              {/* Center Timeline */}
               <div className="about-timeline-container">
                 <div className="about-timeline-wrapper">
                   <div className="about-timeline-line"></div>
@@ -619,22 +612,17 @@ const About = () => {
                     <div
                       key={idx}
                       className={`about-timeline-item ${idx % 2 === 0 ? 'item-left' : 'item-right'}`}
-                      style={{ animationDelay: `${idx * 0.15}s` }}
                     >
-                      <div className={`about-timeline-content ${idx % 2 === 0 ? 'content-left' : 'content-right'}`}>
-                        <div className={`about-timeline-side ${idx % 2 === 0 ? 'side-right' : 'side-left'}`}>
+                      <div className="about-timeline-content">
+                        <div className="about-timeline-side">
                           <div className="about-event-card">
-                            <div className="about-event-year">{event.year}</div>
-                            <h4 className={`about-event-title ${language === 'ta' ? 'about-tamil-text' : ''}`}>
-                              {event.title}
-                            </h4>
-                            <p className={`about-event-desc ${language === 'ta' ? 'about-tamil-text' : ''}`}>
-                              {event.desc}
-                            </p>
+                            <span className="about-event-year">{event.year}</span>
+                            <h4 className={`about-event-title ${language === 'ta' ? 'about-tamil-text' : ''}`}>{event.title}</h4>
+                            <p className={`about-event-desc ${language === 'ta' ? 'about-tamil-text' : ''}`}>{event.desc}</p>
                           </div>
                         </div>
                         <div className="about-timeline-dot-container">
-                          <div className="about-timeline-dot"> </div>
+                          <div className="about-timeline-dot"></div>
                         </div>
                         <div className="about-timeline-spacer"></div>
                       </div>
@@ -643,112 +631,74 @@ const About = () => {
                 </div>
               </div>
 
-              {/* Category Details */}
-              <div className="about-details-sidebar">
+              {/* Right Details Sidebar */}
+              <aside className="about-details-sidebar">
                 <div className="about-details-card">
                   <div className="about-details-header">
-                    <div className="about-details-icon">
-                      {activeTimeline === 'all' ?
-                        <BookOpen size={28} /> :
-                        getIconComponent(t.sections[activeTimeline]?.icon, 28)
-                      }
-                    </div>
+                    {activeTimeline === 'all' ? <BookOpen size={28} /> : getIconComponent(t.sections[activeTimeline]?.icon, 28)}
                     <h3 className={`about-details-title ${language === 'ta' ? 'about-tamil-text' : ''}`}>
                       {activeTimeline === 'all' ? t.completeTimeline : t.sections[activeTimeline]?.title}
                     </h3>
                   </div>
                   {activeTimeline === 'all' ? (
-                    <div className="about-details-message-wrapper">
-                      <Target size={20} />
-                      <p className={`about-details-message ${language === 'ta' ? 'about-tamil-text' : ''}`}>
-                        {t.viewMessage}
-                      </p>
-                    </div>
+                    <p className={`about-details-message ${language === 'ta' ? 'about-tamil-text' : ''}`}>{t.viewMessage}</p>
                   ) : (
                     <ul className="about-details-list">
                       {t.sections[activeTimeline]?.items.map((item, idx) => (
                         <li key={idx} className="about-details-item">
-                          <span className="about-item-check">
-                            <CheckCircle size={16} />
-                          </span>
+                          <CheckCircle size={18} className="about-item-check" />
                           <span className={`about-item-text ${language === 'ta' ? 'about-tamil-text' : ''}`}>{item}</span>
                         </li>
                       ))}
                     </ul>
                   )}
                 </div>
-              </div>
+              </aside>
             </div>
 
             {/* Values Section */}
             <div className="about-values-section">
-              <div className="about-values-header">
-                <h3 className={`about-values-title ${language === 'ta' ? 'about-tamil-text' : ''}`}>
-                  {t.values.title}
-                </h3>
-              </div>
+              <h2 className={`about-values-title ${language === 'ta' ? 'about-tamil-text' : ''}`}>{t.values.title}</h2>
               <div className="about-values-grid">
                 {t.values.items.map((value, idx) => (
                   <div key={idx} className="about-value-card">
                     <div className="about-value-icon-wrapper">
-                      <div className="about-value-icon">
-                        {getIconComponent(value.icon, 32)}
-                      </div>
+                      {getIconComponent(value.icon, 36)}
                     </div>
-                    <h4 className={`about-value-title ${language === 'ta' ? 'about-tamil-text' : ''}`}>
-                      {value.title}
-                    </h4>
-                    <p className={`about-value-desc ${language === 'ta' ? 'about-tamil-text' : ''}`}>
-                      {value.desc}
-                    </p>
+                    <h3 className={`about-value-title ${language === 'ta' ? 'about-tamil-text' : ''}`}>{value.title}</h3>
+                    <p className={`about-value-desc ${language === 'ta' ? 'about-tamil-text' : ''}`}>{value.desc}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Symbol Section */}
+            {/* Party Symbol Section */}
             <div className="about-symbol-section">
               <div className="about-symbol-grid">
                 <div className="about-symbol-visual">
-                  <div className="about-symbol-wrapper">
-                    <div className="about-symbol-logo-container">
-                      <img
-                        src="/logo.png"
-                        alt="AITC Party Symbol"
-                        className="about-party-logo"
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = "https://placehold.co/200x200/00994C/FFFFFF?text=🌱+AITC";
-                        }}
-                      />
-                    </div>
+                  <div className="about-symbol-logo-container">
+                    <img src="/logo.png" alt="Party Symbol" className="about-party-logo" />
                   </div>
                 </div>
                 <div className="about-symbol-info">
-                  <div className="about-symbol-header">
-                    <h3 className={`about-symbol-title ${language === 'ta' ? 'about-tamil-text' : ''}`}>
-                      {t.symbolTitle}
-                    </h3>
-                  </div>
-                  <p className={`about-symbol-desc ${language === 'ta' ? 'about-tamil-text' : ''}`}>
-                    {t.symbolDesc}
-                  </p>
+                  <h2 className={`about-symbol-title ${language === 'ta' ? 'about-tamil-text' : ''}`}>{t.symbolTitle}</h2>
+                  <p className={`about-symbol-desc ${language === 'ta' ? 'about-tamil-text' : ''}`}>{t.symbolDesc}</p>
                   <div className="about-symbol-features">
                     <div className="about-symbol-feature">
-                      <Check size={20} />
-                      <span className={`${language === 'ta' ? 'about-tamil-text' : ''}`}>
+                      <Check size={24} />
+                      <span className={language === 'ta' ? 'about-tamil-text' : ''}>
                         {language === 'ta' ? 'மம்தா பானர்ஜி வடிவமைப்பு' : 'Designed by Mamata Banerjee'}
                       </span>
                     </div>
                     <div className="about-symbol-feature">
-                      <Check size={20} />
-                      <span className={`${language === 'ta' ? 'about-tamil-text' : ''}`}>
+                      <Check size={24} />
+                      <span className={language === 'ta' ? 'about-tamil-text' : ''}>
                         {language === 'ta' ? 'தேர்தல் ஆணையம் அங்கீகாரம்' : 'Election Commission Approved'}
                       </span>
                     </div>
                     <div className="about-symbol-feature">
-                      <Check size={20} />
-                      <span className={`${language === 'ta' ? 'about-tamil-text' : ''}`}>
+                      <Check size={24} />
+                      <span className={language === 'ta' ? 'about-tamil-text' : ''}>
                         {language === 'ta' ? '6% வாக்கு தேவை' : '6% Vote Requirement'}
                       </span>
                     </div>
@@ -758,11 +708,8 @@ const About = () => {
             </div>
           </div>
         </section>
-        <Footer
-          language={language}
-          setLanguage={handleLanguageChange}
-          t={t}
-        />
+
+        <Footer language={language} setLanguage={handleLanguageChange} t={t} />
       </div>
     </>
   );

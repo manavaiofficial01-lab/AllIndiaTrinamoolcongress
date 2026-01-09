@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import './Navbar.css';
 
-const Navbar = ({ 
-  scrolled, 
-  language, 
-  setLanguage, 
-  mobileMenuOpen, 
-  setMobileMenuOpen, 
+const Navbar = ({
+  scrolled,
+  language,
+  setLanguage,
+  mobileMenuOpen,
+  setMobileMenuOpen,
   t
 }) => {
   const location = useLocation();
-  
+
   // Close mobile menu on ESC key
   useEffect(() => {
     const handleEscKey = (e) => {
@@ -42,9 +43,9 @@ const Navbar = ({
             <div className="logo-section">
               <Link to="/" className="logo-link">
                 <div className="logo-image-wrapper">
-                  <img 
-                    src="/logo.png" 
-                    alt="Trinamool Congress Tamil Nadu" 
+                  <img
+                    src="/logo.png"
+                    alt="Trinamool Congress Tamil Nadu"
                     className="logo-image"
                     onError={(e) => {
                       e.target.style.display = 'none';
@@ -71,7 +72,7 @@ const Navbar = ({
                   {item.label}
                 </Link>
               ))}
-              <button 
+              <button
                 onClick={() => setLanguage(language === 'ta' ? 'en' : 'ta')}
                 className="lang-button"
                 aria-label={language === 'ta' ? 'Switch to English' : 'Switch to Tamil'}
@@ -81,7 +82,7 @@ const Navbar = ({
             </div>
 
             {/* Mobile Menu Button */}
-            <button 
+            <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="mobile-menu-button"
               aria-label="Toggle menu"
@@ -94,7 +95,7 @@ const Navbar = ({
       </nav>
 
       {/* Mobile Menu Overlay */}
-      <div 
+      <div
         className={`mobile-menu-overlay ${mobileMenuOpen ? 'active' : ''}`}
         onClick={() => setMobileMenuOpen(false)}
         role="presentation"
@@ -107,7 +108,7 @@ const Navbar = ({
           <div className={`mobile-menu-title ${language === 'ta' ? 'tamil-text' : ''}`}>
             {language === 'ta' ? 'மெனு' : 'Menu'}
           </div>
-          <button 
+          <button
             onClick={() => setMobileMenuOpen(false)}
             className="mobile-menu-close"
             aria-label="Close menu"
@@ -115,7 +116,7 @@ const Navbar = ({
             ✕
           </button>
         </div>
-        
+
         <nav className="mobile-menu-links">
           {t.nav.map((item) => (
             <Link
@@ -127,7 +128,7 @@ const Navbar = ({
               {item.label}
             </Link>
           ))}
-          <button 
+          <button
             onClick={() => {
               setLanguage(language === 'ta' ? 'en' : 'ta');
               setMobileMenuOpen(false);
@@ -137,8 +138,8 @@ const Navbar = ({
             {language === 'ta' ? 'Switch to English' : 'தமிழுக்கு மாற்றுக'}
           </button>
         </nav>
-        
-       
+
+
       </aside>
     </>
   );

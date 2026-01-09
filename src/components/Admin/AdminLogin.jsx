@@ -47,7 +47,7 @@ const AdminLogin = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            placeholder="admin@tmctamilnadu.org"
+                            placeholder="vettritmctn@gmail.com"
                         />
                     </div>
                     <div className="form-group">

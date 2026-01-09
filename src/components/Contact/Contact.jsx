@@ -71,8 +71,8 @@ const Contact = () => {
       followUs: 'Follow Us',
       findUs: 'Find Us Here',
       address: 'TMC Tamil Nadu Office, 123 Anna Salai, Chennai - 600002',
-      phoneNumber: '+91 9876543210',
-      emailAddress: 'contact@tmctamilnadu.org',
+      phoneNumber: '+91 744 849 8888',
+      emailAddress: 'vettritmctn@gmail.com',
       hoursWeekdays: 'Monday - Friday: 9:00 AM - 6:00 PM',
       hoursWeekends: 'Saturday: 10:00 AM - 4:00 PM',
       hoursHoliday: 'Sunday: Closed',
@@ -129,8 +129,8 @@ const Contact = () => {
       followUs: 'எங்களைப் பின்தொடருங்கள்',
       findUs: 'எங்களை இங்கே கண்டறியவும்',
       address: 'டி.எம்.சி தமிழ்நாடு அலுவலகம், 123 அண்ணா சாலை, சென்னை - 600002',
-      phoneNumber: '+91 9876543210',
-      emailAddress: 'contact@tmctamilnadu.org',
+      phoneNumber: '+91 744 849 8888',
+      emailAddress: 'vettritmctn@gmail.com',
       hoursWeekdays: 'திங்கள் - வெள்ளி: காலை 9:00 - மாலை 6:00',
       hoursWeekends: 'சனிக்கிழமை: காலை 10:00 - மாலை 4:00',
       hoursHoliday: 'ஞாயிற்றுக்கிழமை: மூடப்பட்டது',
@@ -228,11 +228,24 @@ const Contact = () => {
 
     setFormStatus({ submitting: true, submitted: false, error: null });
 
-    // Simulate API call
-    setTimeout(() => {
-      // In real implementation, this would be an actual API call
-      console.log('Form data:', formData);
+    // WhatsApp Integration
+    const phoneNumber = '+917448498888';
+    const whatsappMessage = `*New Contact Message from TMC TN Website*
+    
+*Name:* ${formData.name}
+*Email:* ${formData.email}
+*Phone:* ${formData.phone || 'N/A'}
+*Subject:* ${formData.subject}
+*Message:* ${formData.message}`;
 
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappUrl = `https://wa.me/${phoneNumber.replace(/[^0-9]/g, '')}?text=${encodedMessage}`;
+
+    // Construct the WhatsApp link and open it
+    window.open(whatsappUrl, '_blank');
+
+    // Simulate API call and success state
+    setTimeout(() => {
       setFormStatus({
         submitting: false,
         submitted: true,
@@ -474,7 +487,7 @@ const Contact = () => {
                       {language === 'ta' ? 'தொலைபேசி எண்' : 'Phone'}
                     </h3>
                     <p className={`contact-info-text ${language === 'ta' ? 'contact-tamil-text' : ''}`}>
-                      {t.phoneNumber}
+                      {t.phoneNumber || '+91 744 849 8888'}
                     </p>
                   </div>
                 </div>

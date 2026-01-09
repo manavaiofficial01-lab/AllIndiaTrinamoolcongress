@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { supabase } from '../../../supabase'
 import { useNavigate } from 'react-router-dom'
 import ManageNews from './ManageNews'
+import ManageMembers from './ManageMembers'
+import CardGenerator from './CardGenerator'
+import ManageCards from './ManageCards'
 
 import './Admin.css'
 
@@ -61,11 +64,26 @@ const AdminDashboard = () => {
                     </div>
 
                     <div
-                        className={`nav-item ${activeTab === 'settings' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('settings')}
+                        className={`nav-item ${activeTab === 'members' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('members')}
                     >
-                        Settings
+                        Members List
                     </div>
+
+                    <div
+                        className={`nav-item ${activeTab === 'cards' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('cards')}
+                    >
+                        Generate ID Card
+                    </div>
+
+                    <div
+                        className={`nav-item ${activeTab === 'holders' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('holders')}
+                    >
+                        Saved Cards
+                    </div>
+
                 </nav>
             </div>
 
@@ -74,8 +92,9 @@ const AdminDashboard = () => {
                 <div className="dashboard-header">
                     <h2>
                         {activeTab === 'news' && 'News Management'}
-                        {activeTab === 'images' && 'Image Library'}
-                        {activeTab === 'settings' && 'System Settings'}
+                        {activeTab === 'members' && 'Membership Registrations'}
+                        {activeTab === 'cards' && 'Premium ID Generator'}
+                        {activeTab === 'holders' && 'Card Holder Database'}
                     </h2>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                         <span>{session.user.email}</span>
@@ -84,15 +103,10 @@ const AdminDashboard = () => {
                 </div>
 
                 {activeTab === 'news' && <ManageNews />}
+                {activeTab === 'members' && <ManageMembers />}
+                {activeTab === 'cards' && <CardGenerator />}
+                {activeTab === 'holders' && <ManageCards />}
 
-
-
-                {activeTab === 'settings' && (
-                    <div>
-                        <h3>Database Schema</h3>
-                        <p>Make sure to run the latest schema updates in Supabase.</p>
-                    </div>
-                )}
             </div>
         </div>
     )

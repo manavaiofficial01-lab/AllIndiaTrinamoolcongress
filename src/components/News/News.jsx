@@ -259,19 +259,27 @@ const News = () => {
                 <article key={news.id} className="news-article">
 
                   {/* Featured Image GRID Style */}
-                  <div className="news-gallery-grid" onClick={() => openModal(news)} style={{ cursor: 'pointer', marginBottom: '1rem' }}>
-                    {/* 
-                            Display logic: 
-                            If 1 image -> full width
-                            If 2 images -> 50/50
-                            If 3+ -> 1 big, 2 small using CSS grid or simple flex hacks 
-                            For now, restoring the "Gallery" look by showing just the first few 
-                        */}
+                  <div className="news-gallery-grid" onClick={() => openModal(news)} style={{
+                    cursor: 'pointer',
+                    marginBottom: '1rem',
+                    height: news.images.length === 1 ? 'auto' : undefined
+                  }}>
                     <div className="gallery-preview-container" style={{ display: 'grid', gridTemplateColumns: news.images.length > 1 ? 'repeat(2, 1fr)' : '1fr', gap: '4px' }}>
                       {news.images.slice(0, 4).map((img, idx) => (
-                        <img key={idx} src={img} alt="" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '4px' }} />
+                        <img
+                          key={idx}
+                          src={img}
+                          alt=""
+                          style={{
+                            width: '100%',
+                            height: news.images.length === 1 ? 'auto' : '200px',
+                            maxHeight: news.images.length === 1 ? '600px' : undefined,
+                            objectFit: news.images.length === 1 ? 'contain' : 'cover',
+                            backgroundColor: news.images.length === 1 ? '#f9fafb' : 'transparent',
+                            borderRadius: '4px'
+                          }}
+                        />
                       ))}
-                      {/* Overlay if more than 4 images? Not needed for chunks of 4 */}
                     </div>
                   </div>
 

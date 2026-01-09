@@ -1,0 +1,416 @@
+/* Member ID Card Landscape Design */
+.id-card-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding: 10px;
+    backdrop-filter: blur(8px);
+    overflow-y: auto;
+}
+
+.id-card-container {
+    background: transparent;
+    padding: 0;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    position: relative;
+    min-height: min-content;
+}
+
+/* Landscape Card Structure - Reduced Base Size */
+.tmc-id-card {
+    width: 600px;
+    height: 360px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    border: 1px solid #ccc;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    transform-origin: center;
+    background-color: white;
+}
+
+/* New Decorative Elements */
+.card-watermark {
+    position: absolute;
+    top: 55%;
+    left: 45%;
+    transform: translate(-50%, -50%) rotate(-25deg);
+    font-size: 110px;
+    font-weight: 900;
+    color: rgba(19, 136, 8, 0.03);
+    /* More subtle */
+    pointer-events: none;
+    z-index: 1;
+    white-space: nowrap;
+    user-select: none;
+}
+
+/* Premium Header Banner */
+.card-banner {
+    background: linear-gradient(to right, #0a6e04, #138808, #1a9e10);
+    height: 70px;
+    /* Reduced from 90 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    position: relative;
+    border-bottom: 3px solid #FF9933;
+    z-index: 10;
+}
+
+.banner-left {
+    display: flex;
+    padding-left: 5px;
+}
+
+.leader-circle {
+    width: 50px;
+    /* Reduced from 60 */
+    height: 50px;
+    /* Reduced from 60 */
+    border-radius: 50%;
+    border: 2px solid white;
+    overflow: hidden;
+    background: #fff;
+    margin-right: -12px;
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.leader-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-center {
+    flex: 1;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.party-name-main {
+    color: white;
+    font-size: 16px;
+    /* Reduced from 20 */
+    font-weight: 800;
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    font-family: 'Noto Sans Tamil', 'Poppins', sans-serif;
+    letter-spacing: 0.2px;
+}
+
+.banner-right .party-logo-small {
+    width: 45px;
+    /* Reduced from 60 */
+    height: 45px;
+    /* Reduced from 60 */
+    background: white;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+/* Card Body Layout */
+.card-content-wrapper {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 130px 1fr 150px;
+    /* Adjusted columns */
+    padding: 12px 15px;
+    position: relative;
+    background: #fff radial-gradient(circle at 50% 50%, rgba(19, 136, 8, 0.02) 0%, transparent 70%);
+}
+
+/* Left: Member Photo & QR */
+.member-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding-top: 5px;
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    z-index: 2;
+}
+
+.member-photo-frame {
+    width: 110px;
+    /* Reduced from 130 */
+    height: 130px;
+    /* Reduced from 150 */
+    border: 3px solid #138808;
+    background: #fff;
+    padding: 3px;
+    border-radius: 4px;
+}
+
+.member-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-qr-box {
+    width: 60px;
+    /* Reduced from 75 */
+    height: 60px;
+    /* Reduced from 75 */
+    padding: 4px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+/* Center: Member Info Table */
+.data-side {
+    padding: 0 12px;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.membership-label-badge {
+    align-self: flex-start;
+    background: linear-gradient(to right, #138808, #0a6e04);
+    color: white;
+    padding: 3px 12px;
+    border-radius: 3px;
+    font-size: 8px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.data-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.data-row {
+    display: grid;
+    grid-template-columns: 125px 1fr;
+    /* Widened to prevent overlap */
+    font-size: 11px;
+    border-bottom: 1px solid #f5f5f5;
+    padding: 3px 0;
+    align-items: center;
+}
+
+.data-row .label {
+    font-weight: 600;
+    color: #777;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.data-row .value {
+    font-weight: 700;
+    color: #222;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 5px;
+    /* Added padding to separate from label */
+}
+
+.member-signature-area {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 5px;
+    z-index: 5;
+}
+
+.signature-img {
+    height: 55px;
+    /* Increased from 35px */
+    max-width: 160px;
+    /* Increased from 120px */
+    object-fit: contain;
+    margin-bottom: 0px;
+    mix-blend-mode: multiply;
+}
+
+.signature-label {
+    display: block;
+    font-size: 8px;
+    font-weight: 600;
+    color: #888;
+    text-align: center;
+}
+
+/* Right: Prominent Leader Photo */
+.leader-side {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.big-leader-portrait {
+    width: 150px;
+    /* Reduced from 190 */
+    height: 230px;
+    /* Reduced from 280 */
+    object-fit: cover;
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+}
+
+.leader-title-card {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    text-align: right;
+    padding-right: 5px;
+}
+
+.leader-name-text {
+    font-weight: 800;
+    font-size: 11px;
+    /* Reduced from 14 */
+    color: #138808;
+    display: block;
+}
+
+.leader-role-text {
+    font-size: 8px;
+    /* Reduced from 10 */
+    color: #888;
+}
+
+/* Card Bottom Strip */
+.card-flag-footer {
+    height: 8px;
+    /* Reduced from 12 */
+    background: linear-gradient(to right, #138808 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%);
+    border-top: 1px solid #eee;
+}
+
+/* Mobile Responsiveness using Scale */
+@media screen and (max-width: 640px) {
+    .tmc-id-card {
+        transform: scale(0.9);
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .tmc-id-card {
+        transform: scale(0.85);
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .tmc-id-card {
+        transform: scale(0.75);
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .tmc-id-card {
+        transform: scale(0.65);
+    }
+
+    .id-card-container {
+        gap: 0px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .tmc-id-card {
+        transform: scale(0.55);
+    }
+
+    .id-card-modal {
+        padding: 5px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .tmc-id-card {
+        transform: scale(0.48);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    body * {
+        visibility: hidden;
+    }
+
+    #member-id-card,
+    #member-id-card * {
+        visibility: visible;
+    }
+
+    #member-id-card {
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: scale(1) !important;
+        /* Always print at full size */
+    }
+}
+
+.card-actions {
+    margin-top: 15px;
+    /* Added margin */
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    z-index: 10;
+}
+
+@media screen and (max-width: 460px) {
+    .card-actions {
+        margin-top: -40px;
+        /* Pull buttons up because of scale empty space */
+        flex-direction: row;
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .btn-download,
+    .btn-close {
+        flex: 1;
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .card-actions {
+        margin-top: -65px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .card-actions {
+        margin-top: -85px;
+    }
+}

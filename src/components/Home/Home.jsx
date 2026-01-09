@@ -185,8 +185,19 @@ const Home = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // WhatsApp Integration
+    const tmcPhone = '+917448498888';
+    const whatsappMessage = `*New Lead from TMC TN Website Home Page*
+    
+*Name:* ${formData.name}
+*Email:* ${formData.email}
+*Phone:* ${formData.phone}
+*District:* ${formData.district}
+*Interest:* ${formData.interest}`;
+
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappUrl = `https://wa.me/${tmcPhone.replace(/[^0-9]/g, '')}?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank');
 
     console.log('Form submitted:', formData);
     alert(language === 'ta' ? 'விண்ணப்பம் வெற்றிகரமாக சமர்ப்பிக்கப்பட்டது! எங்கள் குழு விரைவில் உங்களை தொடர்பு கொள்ளும்.' : 'Application submitted successfully! Our team will contact you soon.');
@@ -293,28 +304,28 @@ const Home = () => {
       <section className="stats-section" aria-label="Statistics">
         <div className="container">
           <div className="stats-grid">
-            <div className="stat-card animate-fadeIn">
+            <div className="stat-card animate-slide-up">
               <div className="stat-icon">
                 <Users size={32} />
               </div>
               <div className="stat-number volunteers">{counter.volunteers.toLocaleString()}+</div>
               <div className={`stat-label ${language === 'ta' ? 'tamil-text' : ''}`}>{t.stats.volunteers}</div>
             </div>
-            <div className="stat-card animate-fadeIn">
+            <div className="stat-card animate-slide-up delay-100">
               <div className="stat-icon">
                 <Calendar size={32} />
               </div>
               <div className="stat-number events">{counter.events}+</div>
               <div className={`stat-label ${language === 'ta' ? 'tamil-text' : ''}`}>{t.stats.events}</div>
             </div>
-            <div className="stat-card animate-fadeIn">
+            <div className="stat-card animate-slide-up delay-200">
               <div className="stat-icon">
                 <MapPin size={32} />
               </div>
               <div className="stat-number districts">{counter.districts}</div>
               <div className={`stat-label ${language === 'ta' ? 'tamil-text' : ''}`}>{t.stats.districts}</div>
             </div>
-            <div className="stat-card animate-fadeIn">
+            <div className="stat-card animate-slide-up delay-300">
               <div className="stat-icon">
                 <User size={32} />
               </div>
@@ -332,16 +343,15 @@ const Home = () => {
           <div className="about-grid">
             <div>
               <p className={`about-text ${language === 'ta' ? 'tamil-text' : ''}`}>{t.about.history}</p>
-
             </div>
             <div className="values-grid">
               {t.about.values.map((value, idx) => (
-                <div key={idx} className="value-card animate-fadeIn">
+                <div key={idx} className={`value-card animate-slide-up delay-${(idx + 1) * 100}`}>
                   <div className="value-icon">
-                    {idx === 0 && <Scale size={24} />}
-                    {idx === 1 && <Shield size={24} />}
-                    {idx === 2 && <Users size={24} />}
-                    {idx === 3 && <BookOpen size={24} />}
+                    {idx === 0 && <Scale size={32} />}
+                    {idx === 1 && <Shield size={32} />}
+                    {idx === 2 && <Users size={32} />}
+                    {idx === 3 && <BookOpen size={32} />}
                   </div>
                   <h3 className={`value-title ${language === 'ta' ? 'tamil-text' : ''}`}>{value.title}</h3>
                   <p className={`value-desc ${language === 'ta' ? 'tamil-text' : ''}`}>{value.desc}</p>
@@ -352,38 +362,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Leadership Preview Section */}
-      <section className="leadership-section">
-        <div className="container">
-          <h2 className={`section-title ${language === 'ta' ? 'tamil-text' : ''}`}>{t.leadership.title}</h2>
-          <p className={`section-subtitle ${language === 'ta' ? 'tamil-text' : ''}`}>{t.leadership.subtitle}</p>
-          <div className="leader-grid">
-            {t.leadership.leaders.slice(0, 2).map((leader, idx) => (
-              <article key={idx} className="leader-card animate-fadeIn">
-                <div className="leader-image" aria-hidden="true">
-                  <User size={48} />
-                </div>
-                <div className="leader-info">
-                  <h3 className={`leader-name ${language === 'ta' ? 'tamil-text' : ''}`}>{leader.name}</h3>
-                  <p className={`leader-role ${language === 'ta' ? 'tamil-text' : ''}`}>{leader.role}</p>
-                  <p className={`leader-bio ${language === 'ta' ? 'tamil-text' : ''}`}>{leader.bio.substring(0, 150)}...</p>
-                  <div className="leader-meta">
-                    <span className={`leader-meta-text ${language === 'ta' ? 'tamil-text' : ''}`}>
-                      <Target size={16} style={{ marginRight: '4px' }} />
-                      {leader.experience}
-                    </span>
-                    <span className={`leader-meta-text ${language === 'ta' ? 'tamil-text' : ''}`}>
-                      <MapPin size={16} style={{ marginRight: '4px' }} />
-                      {leader.district}
-                    </span>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-
-        </div>
-      </section>
 
       {/* Vision Preview Section */}
       <section className="vision-section">
@@ -392,13 +370,13 @@ const Home = () => {
           <p className={`section-subtitle ${language === 'ta' ? 'tamil-text' : ''}`}>{t.vision.subtitle}</p>
           <div className="vision-grid">
             {t.vision.pillars.slice(0, 2).map((pillar, idx) => (
-              <article key={idx} className="pillar-card animate-fadeIn">
+              <article key={idx} className={`pillar-card animate-slide-up delay-${(idx + 1) * 200}`}>
                 <div className="pillar-header">
                   <div className="pillar-icon">
-                    {pillar.icon === 'education' && <GraduationCap size={32} />}
-                    {pillar.icon === 'job' && <Briefcase size={32} />}
-                    {pillar.icon === 'women' && <Shield size={32} />}
-                    {pillar.icon === 'farmers' && <Sprout size={32} />}
+                    {pillar.icon === 'education' && <GraduationCap size={40} />}
+                    {pillar.icon === 'job' && <Briefcase size={40} />}
+                    {pillar.icon === 'women' && <Shield size={40} />}
+                    {pillar.icon === 'farmers' && <Sprout size={40} />}
                   </div>
                   <h3 className={`pillar-title ${language === 'ta' ? 'tamil-text' : ''}`}>{pillar.title}</h3>
                 </div>
@@ -407,7 +385,7 @@ const Home = () => {
                   {pillar.goals?.slice(0, 2).map((goal, gIdx) => (
                     <li key={gIdx} className="pillar-goal">
                       <span className="checkmark" aria-hidden="true">
-                        <Check size={16} />
+                        <Check size={20} />
                       </span>
                       <span className={language === 'ta' ? 'tamil-text' : ''}>{goal}</span>
                     </li>
@@ -416,7 +394,6 @@ const Home = () => {
               </article>
             ))}
           </div>
-
         </div>
       </section>
 
@@ -426,24 +403,22 @@ const Home = () => {
           <h2 className={`section-title ${language === 'ta' ? 'tamil-text' : ''}`}>{t.initiatives.title}</h2>
           <div className="initiatives-grid">
             {t.initiatives.list.slice(0, 4).map((initiative, idx) => (
-              <article key={idx} className="initiative-card animate-fadeIn">
-
+              <article key={idx} className={`initiative-card animate-slide-up delay-${(idx + 1) * 100}`}>
                 <div className="initiative-number">{idx + 1}</div>
                 <h3 className={`initiative-title ${language === 'ta' ? 'tamil-text' : ''}`}>{initiative.title}</h3>
                 <p className={`initiative-desc ${language === 'ta' ? 'tamil-text' : ''}`}>{initiative.desc}</p>
               </article>
             ))}
           </div>
-
         </div>
       </section>
 
       {/* Join Call to Action */}
       <section className="join-cta-section">
         <div className="container">
-          <div className="join-cta-card">
+          <div className="join-cta-card animate-scale-in">
             <div className="join-cta-icon">
-              <HandHeart size={48} />
+              <HandHeart size={56} />
             </div>
             <h2 className={`join-cta-title ${language === 'ta' ? 'tamil-text' : ''}`}>
               {language === 'ta' ? 'தமிழ்நாட்டின் எதிர்காலத்தை உருவாக்குங்கள்' : 'Shape the Future of Tamil Nadu'}

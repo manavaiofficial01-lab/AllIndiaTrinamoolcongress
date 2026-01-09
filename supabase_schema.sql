@@ -13,7 +13,7 @@ create table if not exists site_metadata (
   unique(section, lang)
 );
 
--- Table for Leaders
+-- Table for Leaders  
 create table if not exists leaders (
   id uuid default uuid_generate_v4() primary key,
   lang text not null,
@@ -92,6 +92,51 @@ create policy "Allow anon insert on initiatives" on initiatives for insert with 
 create policy "Allow anon insert on news_items" on news_items for insert with check (true);
 create policy "Allow anon update on news_items" on news_items for update using (true);
 create policy "Allow anon delete on news_items" on news_items for delete using (true);
+
+-- Table for Membership/Join Requests
+create table if not exists membership_requests (
+  id uuid default uuid_generate_v4() primary key,
+  first_name text not null,
+  last_name text not null,
+  email text not null,
+  phone text not null,
+  district text not null,
+  address text,
+  membership_type text default 'volunteer',
+  status text default 'pending', -- pending, reviewed, accepted, rejected
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+-- Table for Saved ID Cards (Card Holders)
+create table if not exists card_holders (
+  id uuid default uuid_generate_v4() primary key,
+  first_name text not null,
+  last_name text not null,
+  district text not null,
+  membership_type text not null,
+  phone text,
+  photo_url text,
+  membership_id text unique not null,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+-- Enable RLS
+alter table membership_requests enable row level security;
+alter table card_holders enable row level security;
+
+-- Create policies for membership_requests
+create policy "Allow public insert on membership_requests" on membership_requests for insert with check (true);
+create policy "Allow authenticated select on membership_requests" on membership_requests for select using (auth.role() = 'authenticated');
+create policy "Allow authenticated update on membership_requests" on membership_requests for update using (auth.role() = 'authenticated');
+create policy "Allow authenticated delete on membership_requests" on membership_requests for delete using (auth.role() = 'authenticated');
+
+-- Create policies for card_holders
+create policy "Allow public read access on card_holders" on card_holders for select using (true);
+create policy "Allow authenticated all on card_holders" on card_holders for all using (auth.role() = 'authenticated');
+
+-- Storage Bucket Notice:
+-- Please create a public storage bucket named 'card-media' in Supabase 
+-- with a folder named 'member-photos' for storing ID card profile pictures.
 
 -- Force schema reload just in case
 NOTIFY pgrst, 'reload schema';
