@@ -94,7 +94,7 @@ const MemberCardModal = ({ member, onClose }) => {
 
                             <div className="member-signature-area">
                                 <img src="/card/signature.png" className="signature-img" alt="Signature" />
-                                <span className="signature-label">மாநிலத் தலைவர் கையொப்பம் / State President Signature</span>
+                                <span className="signature-label">மாநில பொதுச் செயலாளர் கையொப்பம் / State General Secretary of AITMC Signature</span>
                             </div>
                         </div>
 
