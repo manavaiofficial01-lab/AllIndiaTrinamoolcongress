@@ -353,23 +353,27 @@
 
 /* Robust Print Optimization */
 @media print {
-
-    /* Set page padding/margins to zero to allow absolute positioning of card if needed */
     @page {
         size: landscape;
         margin: 0;
     }
 
-    body {
-        margin: 0;
-        padding: 0;
+    /* Hide EVERYTHING by default */
+    body * {
+        visibility: hidden !important;
     }
 
-    /* Hide everything except the modal and card */
-    body>*:not(.id-card-modal) {
-        display: none !important;
+    /* Show ONLY the modal and its contents */
+    .id-card-modal,
+    .id-card-modal *,
+    .id-card-container,
+    .id-card-container *,
+    .tmc-id-card,
+    .tmc-id-card * {
+        visibility: visible !important;
     }
 
+    /* Reset positioning for print */
     .id-card-modal {
         position: absolute !important;
         top: 0 !important;
@@ -383,19 +387,16 @@
         justify-content: center !important;
         align-items: center !important;
         backdrop-filter: none !important;
+        z-index: 9999 !important;
     }
 
-    .id-card-container {
-        padding: 0 !important;
-        margin: 0 !important;
-        box-shadow: none !important;
-    }
-
+    /* Hide UI buttons completely */
     .no-print,
     .card-actions,
     .btn-download,
     .btn-close {
         display: none !important;
+        visibility: hidden !important;
     }
 
     /* FORCE COLORS & GRADIENTS */
@@ -406,7 +407,6 @@
         position: relative !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
-        color-adjust: exact !important;
     }
 
     .card-banner,
@@ -418,14 +418,12 @@
 
     .card-watermark {
         color: rgba(19, 136, 8, 0.05) !important;
-        /* Slightly darker for print visibility */
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
     }
 
     /* Ensure images print */
     img {
-        max-width: 100% !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
     }
